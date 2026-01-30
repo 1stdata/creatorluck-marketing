@@ -13,15 +13,16 @@ export function StatsBar() {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className={`text-center p-6 rounded-2xl border transition-all duration-300 hover:scale-105 ${
-                stat.highlight 
-                  ? "bg-accent/10 border-accent/30 hover:bg-accent/15" 
-                  : "bg-card border-border hover:border-accent/20"
-              }`}
+              className="text-center p-6 rounded-2xl border transition-all duration-300 hover:scale-105"
+              style={{
+                backgroundColor: stat.highlight ? 'rgba(239, 68, 68, 0.1)' : 'var(--card)',
+                borderColor: stat.highlight ? 'rgba(239, 68, 68, 0.3)' : 'var(--border)'
+              }}
             >
-              <div className={`font-serif text-4xl lg:text-5xl font-normal leading-none mb-2 ${
-                stat.highlight ? "text-accent" : "text-foreground"
-              }`}>
+              <div 
+                className="font-serif text-4xl lg:text-5xl font-normal leading-none mb-2"
+                style={{ color: stat.highlight ? '#ef4444' : 'var(--foreground)' }}
+              >
                 {stat.value}
               </div>
               <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">

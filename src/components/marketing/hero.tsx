@@ -60,7 +60,7 @@ export function Hero() {
         </div>
 
         <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.05] tracking-tight text-center mb-6 text-balance">
-          Read The <span className="text-accent italic relative">Cards<span className="absolute -bottom-2 left-0 right-0 h-1 bg-accent/50 rounded-full"></span></span>
+          Read The <span className="italic relative" style={{ color: '#ef4444' }}>Cards<span className="absolute -bottom-2 left-0 right-0 h-1 rounded-full" style={{ backgroundColor: 'rgba(239, 68, 68, 0.5)' }}></span></span>
         </h1>
 
         <p className="text-lg text-muted-foreground text-center mb-12 max-w-md mx-auto leading-relaxed">
@@ -106,7 +106,8 @@ export function Hero() {
             />
             <button
               onClick={handleSearch}
-              className="px-8 py-4 bg-accent text-accent-foreground text-sm font-semibold hover:opacity-90 transition-all duration-200 whitespace-nowrap"
+              className="px-8 py-4 text-sm font-semibold hover:opacity-90 transition-all duration-200 whitespace-nowrap"
+              style={{ backgroundColor: '#ef4444', color: '#ffffff' }}
             >
               Search
             </button>
@@ -228,7 +229,7 @@ export function Hero() {
 
           {/* Note */}
           <p className="text-sm text-muted-foreground text-center">
-            <span className="text-accent font-semibold">3 free searches</span>{" "}
+            <span className="font-semibold" style={{ color: '#ef4444' }}>3 free searches</span>{" "}
             <span className="text-muted-foreground/60">&middot;</span> No credit card required
           </p>
 

@@ -4,7 +4,7 @@ const cards = [
   {
     number: "01",
     suit: "\u2660",
-    suitColor: "text-foreground",
+    suitColor: "#fafafa",
     title: "Hook",
     description: "First 3 seconds. Why they stay or leave.",
     score: 85,
@@ -12,7 +12,7 @@ const cards = [
   {
     number: "02",
     suit: "\u2665",
-    suitColor: "text-accent",
+    suitColor: "#ef4444",
     title: "Retention",
     description: "The hold. Patterns that lock attention.",
     score: 72,
@@ -20,7 +20,7 @@ const cards = [
   {
     number: "03",
     suit: "\u2663",
-    suitColor: "text-foreground",
+    suitColor: "#fafafa",
     title: "CTR",
     description: "The click. Thumbnail psychology.",
     score: 91,
@@ -28,7 +28,7 @@ const cards = [
   {
     number: "04",
     suit: "\u2666",
-    suitColor: "text-accent",
+    suitColor: "#ef4444",
     title: "Pattern",
     description: "The edge. 1.2M video database.",
     score: 78,
@@ -43,7 +43,7 @@ export function CardsSection() {
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="font-serif text-4xl sm:text-5xl font-normal mb-4 text-foreground text-balance">
-            Your Analytics <span className="text-accent italic">Deck</span>
+            Your Analytics <span className="italic" style={{ color: '#ef4444' }}>Deck</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-md mx-auto">
             Four key metrics that determine video success
@@ -61,7 +61,8 @@ export function CardsSection() {
                   {card.number}
                 </span>
                 <span
-                  className={`text-3xl leading-none transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12 ${card.suitColor}`}
+                  className="text-3xl leading-none transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
+                  style={{ color: card.suitColor }}
                 >
                   {card.suit}
                 </span>
@@ -81,8 +82,8 @@ export function CardsSection() {
                 </div>
                 <div className="w-16 h-1.5 bg-border rounded-full overflow-hidden">
                   <div 
-                    className="h-full bg-accent rounded-full transition-all duration-500"
-                    style={{ width: `${card.score}%` }}
+                    className="h-full rounded-full transition-all duration-500"
+                    style={{ width: `${card.score}%`, backgroundColor: '#ef4444' }}
                   />
                 </div>
               </div>

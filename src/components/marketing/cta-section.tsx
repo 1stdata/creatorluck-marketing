@@ -30,12 +30,12 @@ export function CtaSection() {
             <h2 className="font-serif text-5xl sm:text-6xl font-normal leading-[0.95] text-foreground">
               Stop
               <br />
-              <span className="text-accent italic">Gambling</span>
+              <span className="italic" style={{ color: '#ef4444' }}>Gambling</span>
             </h2>
           </div>
 
           {/* Right panel */}
-          <div className="bg-accent rounded-3xl lg:rounded-l-none p-10 lg:p-16 flex flex-col justify-center items-start">
+          <div className="rounded-3xl lg:rounded-l-none p-10 lg:p-16 flex flex-col justify-center items-start" style={{ backgroundColor: '#ef4444' }}>
             <p className="text-lg leading-relaxed mb-10 max-w-sm text-accent-foreground/90">
               The algorithm isn&apos;t random. Learn to read it with data-driven insights that actually work.
             </p>

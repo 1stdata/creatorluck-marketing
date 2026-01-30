@@ -24,7 +24,7 @@ export function Nav() {
       <Link href="/" className="flex items-center gap-3">
         <CardSuitsLogo />
         <span className="text-lg font-bold tracking-tight text-foreground">
-          Creator<span className="text-accent">Luck</span>
+          Creator<span style={{ color: '#ef4444' }}>Luck</span>
         </span>
       </Link>
 
