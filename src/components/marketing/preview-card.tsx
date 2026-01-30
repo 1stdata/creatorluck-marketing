@@ -28,11 +28,11 @@ export function PreviewCard() {
   return (
     <div 
       className="relative"
-      style={{ width: 320, height: 480 }}
+      style={{ width: 400, height: 500 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Spotlight glow behind entire card stack */}
+      {/* Spotlight glow behind entire card stack - pulsing */}
       <div 
         className="absolute pointer-events-none"
         style={{
@@ -41,48 +41,49 @@ export function PreviewCard() {
           left: '50%',
           top: '50%',
           transform: 'translate(-50%, -50%)',
-          background: 'radial-gradient(circle, rgba(230, 57, 70, 0.15) 0%, rgba(230, 57, 70, 0) 60%)',
-          filter: 'blur(20px)',
+          background: 'radial-gradient(circle, rgba(230, 57, 70, 0.15) 0%, rgba(230, 57, 70, 0.08) 30%, rgba(230, 57, 70, 0) 70%)',
+          animation: 'glowPulse 4s ease-in-out infinite',
+          zIndex: 0,
         }}
       />
 
-      {/* Third card (back) */}
+      {/* Back card (furthest behind) - z-index 1 */}
       <div
         className="absolute rounded-2xl"
         style={{
           width: 320,
           height: 420,
-          left: 30,
-          top: 30 + floatY * 0.3,
-          transform: `rotate(-1deg)`,
-          opacity: isDealt ? 0.3 : 0,
-          filter: 'brightness(0.5)',
-          background: 'linear-gradient(145deg, #1A1A1A 0%, #141414 100%)',
+          left: isHovered ? 50 : 40,
+          top: (isHovered ? 50 : 40) + floatY * 0.3,
+          transform: `rotate(${isHovered ? -3 : -2}deg)`,
+          opacity: isDealt ? (isHovered ? 0.35 : 0.25) : 0,
+          filter: 'brightness(0.4)',
+          background: 'linear-gradient(180deg, #1A1A1A 0%, #141414 100%)',
+          border: '1px solid rgba(255,255,255,0.02)',
+          transition: 'all 300ms ease-out',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Middle card - z-index 2 */}
+      <div
+        className="absolute rounded-2xl"
+        style={{
+          width: 320,
+          height: 420,
+          left: isHovered ? 25 : 20,
+          top: (isHovered ? 25 : 20) + floatY * 0.6,
+          transform: `rotate(${isHovered ? 1 : 2}deg)`,
+          opacity: isDealt ? (isHovered ? 0.6 : 0.5) : 0,
+          filter: 'brightness(0.6)',
+          background: 'linear-gradient(180deg, #1A1A1A 0%, #141414 100%)',
           border: '1px solid rgba(255,255,255,0.04)',
-          transition: 'all 600ms cubic-bezier(0.34, 1.56, 0.64, 1) 200ms',
-          transformOrigin: 'center center',
+          transition: 'all 300ms ease-out',
+          zIndex: 2,
         }}
       />
 
-      {/* Second card (middle) */}
-      <div
-        className="absolute rounded-2xl"
-        style={{
-          width: 320,
-          height: 420,
-          left: 15,
-          top: 15 + floatY * 0.6,
-          transform: `rotate(3deg)`,
-          opacity: isDealt ? 0.6 : 0,
-          filter: 'brightness(0.7)',
-          background: 'linear-gradient(145deg, #1A1A1A 0%, #141414 100%)',
-          border: '1px solid rgba(255,255,255,0.05)',
-          transition: 'all 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 100ms',
-          transformOrigin: 'center center',
-        }}
-      />
-
-      {/* Main card */}
+      {/* Main card - z-index 3 */}
       <div
         className="absolute rounded-2xl overflow-hidden cursor-pointer"
         style={{
@@ -91,16 +92,16 @@ export function PreviewCard() {
           left: 0,
           top: floatY,
           transform: isDealt 
-            ? `rotate(${isHovered ? 4 : 6}deg) translateY(${isHovered ? -8 : 0}px) translateX(${isDealt ? 0 : 200}px)`
-            : 'rotate(25deg) translateX(200px)',
+            ? `rotate(${isHovered ? 4 : 6}deg) translateY(${isHovered ? -8 : 0}px)`
+            : 'rotate(20deg) translateX(150px)',
           opacity: isDealt ? 1 : 0,
-          background: 'linear-gradient(145deg, #1A1A1A 0%, #141414 100%)',
+          background: 'linear-gradient(180deg, #1A1A1A 0%, #141414 100%)',
           border: '1px solid rgba(255,255,255,0.06)',
           boxShadow: isHovered
-            ? '6px 6px 0px #0D0D0D, 0px 35px 60px rgba(0,0,0,0.6), 0px 0px 120px rgba(230,57,70,0.25)'
-            : '4px 4px 0px #0D0D0D, 0px 25px 50px rgba(0,0,0,0.5), 0px 0px 100px rgba(230,57,70,0.15)',
-          transition: 'all 400ms cubic-bezier(0.34, 1.56, 0.64, 1)',
-          transformOrigin: 'center center',
+            ? '6px 6px 0px #0D0D0D, 0px 40px 70px rgba(0,0,0,0.7), 0px 0px 120px rgba(230,57,70,0.25)'
+            : '4px 4px 0px #0D0D0D, 0px 30px 60px rgba(0,0,0,0.6), 0px 0px 100px rgba(230,57,70,0.18)',
+          transition: 'all 300ms ease-out',
+          zIndex: 3,
         }}
       >
         {/* Noise texture overlay */}
