@@ -37,8 +37,10 @@ const cards = [
 
 export function CardsSection() {
   return (
-    <section className="px-6 lg:px-12 py-24">
-      <div className="max-w-6xl mx-auto">
+    <section className="px-6 lg:px-12 py-24 relative overflow-hidden">
+      {/* Background accent */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="font-serif text-4xl sm:text-5xl font-normal mb-4 text-foreground text-balance">
             Your Analytics <span className="text-accent italic">Deck</span>
@@ -52,7 +54,7 @@ export function CardsSection() {
           {cards.map((card) => (
             <div
               key={card.number}
-              className="group card-modern p-8 flex flex-col cursor-pointer"
+              className="group card-modern p-8 flex flex-col cursor-pointer hover:border-accent/30 hover:shadow-accent/10"
             >
               <div className="flex justify-between items-start mb-8">
                 <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">

@@ -7,7 +7,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.creatorluck.io";
 
 function CardSuitsLogo() {
   return (
-    <div className="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center">
+    <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/30 flex items-center justify-center">
       <svg width="24" height="24" viewBox="0 0 48 48" fill="none">
         <text x="24" y="14" textAnchor="middle" fontSize="14" fill="#fafafa" fontFamily="Arial" transform="rotate(180 24 14)">&#9824;</text>
         <text x="34" y="24" textAnchor="middle" fontSize="14" fill="#ef4444" fontFamily="Arial" transform="rotate(-90 34 24)">&#9829;</text>
@@ -20,7 +20,7 @@ function CardSuitsLogo() {
 
 export function Nav() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center h-16 px-6 lg:px-12 glass">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center h-16 px-6 lg:px-12 glass border-b border-accent/10">
       <Link href="/" className="flex items-center gap-3">
         <CardSuitsLogo />
         <span className="text-lg font-bold tracking-tight text-foreground">

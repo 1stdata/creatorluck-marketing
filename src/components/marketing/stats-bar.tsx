@@ -1,8 +1,8 @@
 const stats = [
-  { value: "1.2M", label: "Videos Decoded" },
-  { value: "94%", label: "Accuracy" },
-  { value: "2,847", label: "Creators" },
-  { value: "312M", label: "Views Influenced" },
+  { value: "1.2M", label: "Videos Decoded", highlight: false },
+  { value: "94%", label: "Accuracy", highlight: true },
+  { value: "2,847", label: "Creators", highlight: false },
+  { value: "312M", label: "Views Influenced", highlight: true },
 ];
 
 export function StatsBar() {
@@ -13,9 +13,15 @@ export function StatsBar() {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="text-center p-6 rounded-2xl bg-card border border-border"
+              className={`text-center p-6 rounded-2xl border transition-all duration-300 hover:scale-105 ${
+                stat.highlight 
+                  ? "bg-accent/10 border-accent/30 hover:bg-accent/15" 
+                  : "bg-card border-border hover:border-accent/20"
+              }`}
             >
-              <div className="font-serif text-4xl lg:text-5xl font-normal leading-none text-foreground mb-2">
+              <div className={`font-serif text-4xl lg:text-5xl font-normal leading-none mb-2 ${
+                stat.highlight ? "text-accent" : "text-foreground"
+              }`}>
                 {stat.value}
               </div>
               <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">

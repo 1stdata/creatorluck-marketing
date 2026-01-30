@@ -49,8 +49,10 @@ export function Hero() {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center px-6 lg:px-12 pt-32 pb-16 relative overflow-hidden">
-      {/* Subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-accent/5 via-transparent to-transparent pointer-events-none" />
+      {/* Colorful gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-accent/5 to-transparent pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
       
       <div className="relative z-10 w-full max-w-[720px]">
         <div className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground mb-6 text-center">
@@ -58,7 +60,7 @@ export function Hero() {
         </div>
 
         <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.05] tracking-tight text-center mb-6 text-balance">
-          Read The <span className="text-accent italic">Cards</span>
+          Read The <span className="text-accent italic relative">Cards<span className="absolute -bottom-2 left-0 right-0 h-1 bg-accent/50 rounded-full"></span></span>
         </h1>
 
         <p className="text-lg text-muted-foreground text-center mb-12 max-w-md mx-auto leading-relaxed">
@@ -93,7 +95,7 @@ export function Hero() {
           </div>
 
           {/* Search Input */}
-          <div className="flex rounded-2xl border border-border bg-card overflow-hidden mb-4 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/20 transition-all duration-200">
+          <div className="flex rounded-2xl border border-border bg-card/80 backdrop-blur-sm overflow-hidden mb-4 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/20 transition-all duration-200 shadow-lg shadow-accent/5">
             <input
               type="text"
               value={searchQuery}
