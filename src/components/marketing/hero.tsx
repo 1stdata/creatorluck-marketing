@@ -186,13 +186,13 @@ export function Hero() {
               </button>
             </div>
 
-            {/* Filters Toggle */}
+            {/* Filters Toggle - ghost text style */}
             <button
               onClick={() => setFiltersOpen(!filtersOpen)}
-              className="flex items-center justify-center lg:justify-start gap-2 px-4 py-2.5 text-sm font-medium transition-colors mx-auto lg:mx-0 mb-4"
-              style={{ color: 'rgba(255,255,255,0.5)' }}
+              className="flex items-center justify-center lg:justify-start gap-2 px-3 py-2 text-sm font-medium transition-all duration-200 mx-auto lg:mx-0 mb-4 rounded-lg hover:bg-white/5"
+              style={{ color: 'rgba(255,255,255,0.45)' }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" />
               </svg>
               <span>Filters</span>

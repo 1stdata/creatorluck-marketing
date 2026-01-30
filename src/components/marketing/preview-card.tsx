@@ -23,10 +23,10 @@ export function PreviewCard() {
       className="relative cursor-pointer perspective-1000"
       style={{
         width: 300,
-        height: 380,
-        transform: `translateY(${floatY}px) rotate(8deg)`,
+        height: 390,
+        transform: `translateY(${floatY}px) rotate(9deg)`,
         transition: "transform 0.1s ease-out",
-        filter: 'drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5))',
+        filter: 'drop-shadow(0 35px 70px rgba(0, 0, 0, 0.6))',
       }}
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
@@ -38,12 +38,12 @@ export function PreviewCard() {
           transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Glow behind card */}
+        {/* Glow behind card - stronger */}
         <div 
-          className="absolute -inset-8 rounded-3xl pointer-events-none"
+          className="absolute -inset-12 rounded-3xl pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse at center, rgba(230, 57, 70, 0.15) 0%, transparent 70%)',
-            filter: 'blur(20px)',
+            background: 'radial-gradient(ellipse at center, rgba(230, 57, 70, 0.18) 0%, transparent 65%)',
+            filter: 'blur(30px)',
           }}
         />
         
@@ -57,49 +57,64 @@ export function PreviewCard() {
             boxShadow: "0 30px 60px -12px rgba(0, 0, 0, 0.7), 0 0 50px rgba(230, 57, 70, 0.12)",
           }}
         >
-          {/* Thumbnail area - realistic video thumbnail feel */}
+          {/* Thumbnail area - YouTube thumbnail composition */}
           <div 
             className="relative h-44 overflow-hidden"
             style={{ 
               background: "linear-gradient(145deg, #252020 0%, #1a1517 100%)",
             }}
           >
-            {/* Geometric shapes suggesting a real thumbnail */}
+            {/* Background texture - subtle noise/grain */}
             <div 
-              className="absolute top-4 left-4 w-16 h-12 rounded"
-              style={{ backgroundColor: 'rgba(230, 57, 70, 0.15)' }}
-            />
-            <div 
-              className="absolute top-8 left-12 w-24 h-8 rounded"
-              style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}
-            />
-            <div 
-              className="absolute bottom-8 right-6 w-20 h-16 rounded"
-              style={{ backgroundColor: 'rgba(230, 57, 70, 0.1)' }}
-            />
-            <div 
-              className="absolute top-1/2 left-1/3 w-32 h-10 rounded opacity-60"
-              style={{ backgroundColor: 'rgba(255, 255, 255, 0.03)' }}
-            />
-            
-            {/* Blurred color wash */}
-            <div 
-              className="absolute inset-0"
+              className="absolute inset-0 opacity-30"
               style={{
-                background: "radial-gradient(ellipse at 60% 40%, rgba(230, 57, 70, 0.2) 0%, transparent 60%)",
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
               }}
             />
             
-            {/* Play button - smaller and more subtle */}
+            {/* Person silhouette - classic YouTube thumbnail pose */}
+            <div className="absolute bottom-0 right-4 w-24 h-32">
+              <svg viewBox="0 0 100 140" fill="none" className="w-full h-full opacity-20">
+                {/* Head */}
+                <circle cx="50" cy="25" r="20" fill="white"/>
+                {/* Body */}
+                <path d="M30 50 L50 45 L70 50 L75 100 L60 100 L55 70 L45 70 L40 100 L25 100 Z" fill="white"/>
+                {/* Pointing arm */}
+                <path d="M70 55 L95 35 L98 40 L75 62 Z" fill="white"/>
+              </svg>
+            </div>
+            
+            {/* Text block suggestion - top left */}
+            <div className="absolute top-4 left-4 space-y-1">
+              <div className="w-20 h-3 rounded" style={{ backgroundColor: 'rgba(230, 57, 70, 0.3)' }} />
+              <div className="w-28 h-2.5 rounded" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }} />
+              <div className="w-16 h-2.5 rounded" style={{ backgroundColor: 'rgba(255, 255, 255, 0.08)' }} />
+            </div>
+            
+            {/* Accent element - arrow or highlight */}
+            <div 
+              className="absolute top-8 right-16 w-8 h-8 rounded-full"
+              style={{ backgroundColor: 'rgba(230, 57, 70, 0.25)' }}
+            />
+            
+            {/* Subtle color wash */}
+            <div 
+              className="absolute inset-0"
+              style={{
+                background: "radial-gradient(ellipse at 70% 60%, rgba(230, 57, 70, 0.15) 0%, transparent 50%)",
+              }}
+            />
+            
+            {/* Play button - red filled */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div 
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-transform duration-200 hover:scale-110"
+                className="w-11 h-11 rounded-full flex items-center justify-center transition-transform duration-200 hover:scale-110"
                 style={{ 
-                  backgroundColor: "rgba(230, 57, 70, 0.85)",
-                  boxShadow: "0 4px 15px rgba(230, 57, 70, 0.35)",
+                  backgroundColor: "#E63946",
+                  boxShadow: "0 4px 20px rgba(230, 57, 70, 0.5)",
                 }}
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
@@ -108,7 +123,7 @@ export function PreviewCard() {
             {/* Duration badge */}
             <div 
               className="absolute bottom-2 right-2 px-2 py-0.5 rounded text-[10px] font-medium"
-              style={{ backgroundColor: "rgba(0,0,0,0.85)", color: "rgba(255,255,255,0.9)" }}
+              style={{ backgroundColor: "rgba(0,0,0,0.9)", color: "rgba(255,255,255,0.95)" }}
             >
               12:34
             </div>
