@@ -71,7 +71,7 @@ export function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 lg:px-12 pt-24 pb-16 relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center pt-24 pb-16 relative overflow-hidden">
       {/* Spotlight effect behind card area */}
       <div 
         className="absolute pointer-events-none hidden lg:block"
@@ -85,7 +85,7 @@ export function Hero() {
         }}
       />
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         {/* Left side - Content */}
         <div className="flex-1 max-w-[640px]">
           <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.05] tracking-tight text-center lg:text-left mb-6 text-balance">

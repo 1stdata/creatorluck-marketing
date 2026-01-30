@@ -61,23 +61,15 @@ export function Nav() {
         }}
       />
 
-      <div className="flex justify-between items-center h-full px-6 lg:px-12 max-w-7xl mx-auto w-full relative">
-        <Link href="/" className="flex items-center gap-3 group">
+      <div className="flex justify-between items-center h-full w-full max-w-7xl mx-auto px-6 lg:px-12 relative">
+        <Link href="/" className="flex items-center gap-2.5 group">
           <CardSuitsLogo />
-          <div className="flex flex-col">
-            <span 
-              className="text-lg font-bold tracking-tight leading-tight"
-              style={{ color: 'rgba(255,255,255,0.95)' }}
-            >
-              Creator<span style={{ color: '#E63946' }}>Luck</span>
-            </span>
-            <span 
-              className="text-[9px] font-mono uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ color: 'rgba(255,255,255,0.4)' }}
-            >
-              Video Intelligence
-            </span>
-          </div>
+          <span 
+            className="text-xl font-bold tracking-tight"
+            style={{ color: 'rgba(255,255,255,0.95)' }}
+          >
+            Creator<span style={{ color: '#E63946' }}>Luck</span>
+          </span>
         </Link>
 
         <div className="flex items-center gap-8">
