@@ -80,10 +80,10 @@ export function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         {/* Left side - Content */}
         <div className="flex-1 max-w-[640px]">
-          {/* Minimized platform label */}
+          {/* Minimized platform label - very subtle */}
           <div 
-            className="font-mono text-[10px] uppercase tracking-[0.25em] mb-6 text-center lg:text-left"
-            style={{ color: 'rgba(255,255,255,0.4)' }}
+            className="font-mono text-[10px] uppercase tracking-[0.25em] mb-8 text-center lg:text-left"
+            style={{ color: 'rgba(255,255,255,0.25)' }}
           >
             Video Intelligence Platform
           </div>
@@ -112,11 +112,12 @@ export function Hero() {
             Stop guessing. Discover what makes videos go viral with AI-powered analytics.
           </p>
 
-          {/* Proof element */}
+          {/* Proof element - brighter for visibility */}
           <div 
-            className="font-mono text-xs uppercase tracking-[0.15em] mb-10 text-center lg:text-left"
-            style={{ color: 'rgba(255,255,255,0.5)' }}
+            className="font-mono text-xs uppercase tracking-[0.15em] mb-10 text-center lg:text-left flex items-center gap-2 justify-center lg:justify-start"
+            style={{ color: 'rgba(255,255,255,0.7)' }}
           >
+            <span style={{ color: '#E63946' }}>●</span>
             2.3M+ videos analyzed
           </div>
 
