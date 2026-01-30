@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Plus_Jakarta_Sans, Space_Mono, Instrument_Serif } from "next/font/google";
-import "./globals.css";
+// Styles loaded from main.css - globals.css removed
+import "./main.css";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -40,7 +41,7 @@ export default function RootLayout({
         lang="en"
         className={`${jakarta.variable} ${spaceMono.variable} ${instrumentSerif.variable}`}
       >
-        <body className="font-sans bg-white text-black antialiased">
+        <body className="font-sans bg-background text-foreground antialiased">
           {children}
         </body>
       </html>
