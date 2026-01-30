@@ -7,31 +7,22 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.creatorluck.io";
 
 function CardSuitsLogo() {
   return (
-    <div 
-      className="w-11 h-11 rounded-xl flex items-center justify-center relative overflow-hidden"
-      style={{ 
-        background: 'linear-gradient(145deg, rgba(230, 57, 70, 0.25) 0%, rgba(230, 57, 70, 0.08) 100%)', 
-        border: '1px solid rgba(230, 57, 70, 0.35)',
-        boxShadow: '0 4px 16px rgba(230, 57, 70, 0.15), inset 0 1px 0 rgba(255,255,255,0.05)',
-      }}
-    >
-      {/* Noise texture */}
+    <div className="relative flex items-center justify-center">
+      {/* Glow behind the suit */}
       <div 
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        className="absolute w-8 h-8 rounded-full"
+        style={{ 
+          background: 'radial-gradient(circle, rgba(230, 57, 70, 0.3) 0%, transparent 70%)',
+          filter: 'blur(4px)',
         }}
       />
-      {/* Stacked suits effect */}
+      {/* Main suit icon */}
       <span 
-        className="absolute text-sm font-serif opacity-30"
-        style={{ color: '#E63946', top: '4px', left: '6px' }}
-      >
-        ♥
-      </span>
-      <span 
-        className="text-xl font-serif relative z-10" 
-        style={{ color: '#E63946', textShadow: '0 2px 8px rgba(230, 57, 70, 0.4)' }}
+        className="text-2xl font-serif relative z-10" 
+        style={{ 
+          color: '#E63946', 
+          textShadow: '0 2px 12px rgba(230, 57, 70, 0.5)',
+        }}
       >
         ♠
       </span>
@@ -70,7 +61,7 @@ export function Nav() {
         }}
       />
 
-      <div className="flex justify-between items-center h-full px-6 lg:px-12 relative">
+      <div className="flex justify-between items-center h-full px-6 lg:px-12 max-w-7xl mx-auto w-full relative">
         <Link href="/" className="flex items-center gap-3 group">
           <CardSuitsLogo />
           <div className="flex flex-col">
