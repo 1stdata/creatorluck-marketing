@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { SearchTeaser } from "./search-teaser";
 import { PreviewCard } from "./preview-card";
@@ -10,10 +10,10 @@ type SearchTab = "topic" | "channel" | "video";
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.creatorluck.io";
 
 const placeholderTexts = [
-  "What niche? (e.g. 'Minecraft')",
-  "Try 'Personal Finance'",
-  "Search 'Tech Reviews'",
-  "Explore 'Cooking tutorials'",
+  'Try "MrBeast" — see what makes him viral',
+  'Search "tech reviews" — find winning formats',
+  'Paste any YouTube URL to analyze',
+  'Try "personal finance" — discover hooks that work',
 ];
 
 export function Hero() {
@@ -21,6 +21,7 @@ export function Hero() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [placeholderVisible, setPlaceholderVisible] = useState(true);
   const [filters, setFilters] = useState({
     country: "Global (All)",
     searchOrder: "Relevance",
@@ -36,11 +37,15 @@ export function Hero() {
 
   const { isSignedIn } = useAuth();
 
-  // Animated placeholder cycling
+  // Animated placeholder cycling with fade
   useEffect(() => {
     if (activeTab !== "topic") return;
     const interval = setInterval(() => {
-      setPlaceholderIndex((prev) => (prev + 1) % placeholderTexts.length);
+      setPlaceholderVisible(false);
+      setTimeout(() => {
+        setPlaceholderIndex((prev) => (prev + 1) % placeholderTexts.length);
+        setPlaceholderVisible(true);
+      }, 200);
     }, 3000);
     return () => clearInterval(interval);
   }, [activeTab]);
@@ -67,34 +72,29 @@ export function Hero() {
 
   return (
     <section className="min-h-screen flex items-center justify-center px-6 lg:px-12 pt-24 pb-16 relative overflow-hidden">
-      {/* Red glow accents */}
+      {/* Spotlight effect behind card area */}
       <div 
-        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none"
-        style={{ backgroundColor: 'rgba(230, 57, 70, 0.12)' }}
-      />
-      <div 
-        className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full blur-3xl pointer-events-none"
-        style={{ backgroundColor: 'rgba(230, 57, 70, 0.08)' }}
+        className="absolute pointer-events-none hidden lg:block"
+        style={{
+          right: '15%',
+          top: '50%',
+          width: 600,
+          height: 600,
+          transform: 'translateY(-50%)',
+          background: 'radial-gradient(circle, rgba(230, 57, 70, 0.12) 0%, rgba(230, 57, 70, 0) 70%)',
+        }}
       />
       
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         {/* Left side - Content */}
         <div className="flex-1 max-w-[640px]">
-          {/* Minimized platform label - very subtle */}
-          <div 
-            className="font-mono text-[10px] uppercase tracking-[0.25em] mb-8 text-center lg:text-left"
-            style={{ color: 'rgba(255,255,255,0.25)' }}
-          >
-            Video Intelligence Platform
-          </div>
-
           <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.05] tracking-tight text-center lg:text-left mb-6 text-balance">
             Read The{" "}
             <span 
               className="italic relative inline-block"
               style={{ 
                 color: '#E63946',
-                textShadow: '0 2px 20px rgba(230, 57, 70, 0.3)',
+                textShadow: '0 2px 30px rgba(230, 57, 70, 0.4)',
               }}
             >
               Cards
@@ -112,19 +112,27 @@ export function Hero() {
             Stop guessing. Discover what makes videos go viral with AI-powered analytics.
           </p>
 
-          {/* Proof element - brighter for visibility */}
+          {/* Proof element with pulsing red dot */}
           <div 
-            className="font-mono text-xs uppercase tracking-[0.15em] mb-10 text-center lg:text-left flex items-center gap-2 justify-center lg:justify-start"
-            style={{ color: 'rgba(255,255,255,0.7)' }}
+            className="font-mono text-xs uppercase tracking-[0.2em] mb-10 text-center lg:text-left flex items-center gap-3 justify-center lg:justify-start"
+            style={{ color: 'rgba(255,255,255,0.6)' }}
           >
-            <span style={{ color: '#E63946' }}>●</span>
-            2.3M+ videos analyzed
+            <span 
+              className="inline-block w-2 h-2 rounded-full animate-pulse"
+              style={{ 
+                backgroundColor: '#E63946',
+                boxShadow: '0 0 8px rgba(230, 57, 70, 0.6)',
+              }}
+            />
+            <span>2.3M+ videos analyzed</span>
+            <span style={{ opacity: 0.3 }}>•</span>
+            <span>Used by 12,000+ creators</span>
           </div>
 
           {/* Search Wrapper */}
           <div className="w-full">
-            {/* Tabs with sliding indicator */}
-            <div className="flex gap-2 mb-4 justify-center lg:justify-start">
+            {/* Tabs with suit icons */}
+            <div className="flex gap-2 mb-4 justify-center lg:justify-start relative">
               {[
                 { id: "topic" as const, icon: "♠", label: "By Topic" },
                 { id: "channel" as const, icon: "♥", label: "By Channel" },
@@ -133,34 +141,55 @@ export function Hero() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className="px-5 py-2.5 text-sm font-medium rounded-full flex items-center gap-2 transition-all duration-300"
+                  className="px-5 py-2.5 text-sm font-medium rounded-full flex items-center gap-2 transition-all duration-200"
                   style={
                     activeTab === tab.id
                       ? { 
-                          backgroundColor: '#E63946', 
+                          background: 'linear-gradient(135deg, #E63946, #C1121F)',
                           color: '#ffffff',
-                          boxShadow: '0 4px 20px rgba(230, 57, 70, 0.3)',
+                          boxShadow: '0 4px 15px rgba(230, 57, 70, 0.3)',
                         }
                       : { 
-                          backgroundColor: 'rgba(26, 26, 26, 0.8)', 
+                          backgroundColor: 'transparent',
                           color: 'rgba(255,255,255,0.6)', 
-                          border: '1px solid #262626' 
+                          border: '1px solid rgba(255,255,255,0.1)',
                         }
                   }
+                  onMouseEnter={(e) => {
+                    if (activeTab !== tab.id) {
+                      e.currentTarget.style.borderColor = 'rgba(230, 57, 70, 0.3)';
+                      e.currentTarget.style.backgroundColor = 'rgba(230, 57, 70, 0.05)';
+                      e.currentTarget.style.color = 'rgba(255,255,255,0.9)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (activeTab !== tab.id) {
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = 'rgba(255,255,255,0.6)';
+                    }
+                  }}
                 >
-                  <span className="text-sm">{tab.icon}</span>
+                  <span 
+                    className="text-sm"
+                    style={{ 
+                      color: activeTab === tab.id ? 'white' : 'rgba(255,255,255,0.4)'
+                    }}
+                  >
+                    {tab.icon}
+                  </span>
                   {tab.label}
                 </button>
               ))}
             </div>
 
-            {/* Search Input with inner glow on focus */}
+            {/* Search Input */}
             <div 
-              className="flex rounded-2xl overflow-hidden mb-4 transition-all duration-300 group"
+              className="flex rounded-2xl overflow-hidden mb-4 transition-all duration-200"
               style={{ 
-                backgroundColor: 'rgba(26, 21, 23, 0.9)', 
-                border: '1px solid rgba(230, 57, 70, 0.2)',
-                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.3)',
+                backgroundColor: 'rgba(0,0,0,0.4)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                backdropFilter: 'blur(10px)',
               }}
             >
               <input
@@ -169,28 +198,39 @@ export function Hero() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 placeholder={placeholders[activeTab]}
-                className="flex-1 px-6 py-4 text-base bg-transparent outline-none placeholder:transition-opacity placeholder:duration-500"
+                className="flex-1 px-6 py-4 text-base bg-transparent outline-none transition-opacity duration-200"
                 style={{ 
                   color: '#fafafa',
+                  opacity: placeholderVisible ? 1 : 0.5,
                 }}
               />
+              {/* Deal Me In button with shine animation */}
               <button
                 onClick={handleSearch}
-                className="px-8 py-4 text-sm font-semibold transition-all duration-200 whitespace-nowrap hover:scale-[0.98] active:scale-[0.96]"
+                className="relative px-8 py-4 text-sm font-semibold transition-all duration-200 whitespace-nowrap hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"
                 style={{ 
-                  background: 'linear-gradient(135deg, #E63946 0%, #c1121f 100%)',
+                  background: 'linear-gradient(135deg, #E63946, #B91C2C)',
                   color: '#ffffff',
+                  boxShadow: '0 4px 15px rgba(230, 57, 70, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
                 }}
               >
-                Deal Me In
+                <span className="relative z-10">Deal Me In</span>
+                {/* Shine effect */}
+                <span 
+                  className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                    animation: 'shine 5s infinite',
+                  }}
+                />
               </button>
             </div>
 
-            {/* Filters Toggle - ghost text style */}
+            {/* Filters Toggle */}
             <button
               onClick={() => setFiltersOpen(!filtersOpen)}
               className="flex items-center justify-center lg:justify-start gap-2 px-3 py-2 text-sm font-medium transition-all duration-200 mx-auto lg:mx-0 mb-4 rounded-lg hover:bg-white/5"
-              style={{ color: 'rgba(255,255,255,0.45)' }}
+              style={{ color: 'rgba(255,255,255,0.4)' }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" />
@@ -201,18 +241,18 @@ export function Hero() {
                   filtersOpen ? "rotate-180" : ""
                 }`}
               >
-                ▼
+                ♦
               </span>
             </button>
 
-            {/* Filters Panel with felt texture */}
+            {/* Filters Panel with poker table feel */}
             {filtersOpen && (
               <div 
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 rounded-2xl p-6 mb-4"
                 style={{
-                  backgroundColor: 'rgba(26, 21, 23, 0.95)',
-                  border: '1px solid #262626',
-                  boxShadow: 'inset 0 2px 20px rgba(0,0,0,0.3)',
+                  background: 'linear-gradient(180deg, #1A1517 0%, #141214 100%)',
+                  border: '1px solid rgba(255,255,255,0.05)',
+                  boxShadow: 'inset 0 2px 10px rgba(0,0,0,0.3)',
                 }}
               >
                 <div className="flex flex-col gap-2">
@@ -282,7 +322,7 @@ export function Hero() {
                   </span>
                   <div 
                     className="flex items-center gap-4 rounded-lg px-4 py-3"
-                    style={{ backgroundColor: 'rgba(26,26,26,0.8)', border: '1px solid #262626' }}
+                    style={{ backgroundColor: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)' }}
                   >
                     <input
                       type="range"
@@ -294,7 +334,7 @@ export function Hero() {
                       }
                       className="flex-1 h-1.5 rounded-full appearance-none cursor-pointer"
                       style={{
-                        background: `linear-gradient(to right, #E63946 0%, #E63946 ${filters.minSubscribers}%, #262626 ${filters.minSubscribers}%, #262626 100%)`,
+                        background: `linear-gradient(to right, #E63946 0%, #E63946 ${filters.minSubscribers}%, rgba(255,255,255,0.1) ${filters.minSubscribers}%, rgba(255,255,255,0.1) 100%)`,
                       }}
                     />
                     <span className="text-sm font-semibold min-w-12 text-right" style={{ color: '#fafafa' }}>
@@ -312,7 +352,7 @@ export function Hero() {
                   </span>
                   <div 
                     className="flex items-center gap-4 rounded-lg px-4 py-3"
-                    style={{ backgroundColor: 'rgba(26,26,26,0.8)', border: '1px solid #262626' }}
+                    style={{ backgroundColor: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)' }}
                   >
                     <input
                       type="range"
@@ -324,7 +364,7 @@ export function Hero() {
                       }
                       className="flex-1 h-1.5 rounded-full appearance-none cursor-pointer"
                       style={{
-                        background: `linear-gradient(to right, #E63946 0%, #E63946 ${filters.minAvgViews}%, #262626 ${filters.minAvgViews}%, #262626 100%)`,
+                        background: `linear-gradient(to right, #E63946 0%, #E63946 ${filters.minAvgViews}%, rgba(255,255,255,0.1) ${filters.minAvgViews}%, rgba(255,255,255,0.1) 100%)`,
                       }}
                     />
                     <span className="text-sm font-semibold min-w-12 text-right" style={{ color: '#fafafa' }}>
@@ -353,6 +393,14 @@ export function Hero() {
           <PreviewCard />
         </div>
       </div>
+
+      {/* CSS for shine animation */}
+      <style jsx>{`
+        @keyframes shine {
+          0%, 90%, 100% { transform: translateX(-100%); }
+          95% { transform: translateX(100%); }
+        }
+      `}</style>
     </section>
   );
 }
