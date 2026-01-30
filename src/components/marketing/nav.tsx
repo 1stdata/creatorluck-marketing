@@ -8,15 +8,14 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.creatorluck.io";
 function CardSuitsLogo() {
   return (
     <div 
-      className="w-10 h-10 rounded-xl flex items-center justify-center"
-      style={{ backgroundColor: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.4)' }}
+      className="w-10 h-10 rounded-xl flex items-center justify-center relative overflow-hidden"
+      style={{ 
+        background: 'linear-gradient(135deg, rgba(230, 57, 70, 0.2) 0%, rgba(230, 57, 70, 0.05) 100%)', 
+        border: '1px solid rgba(230, 57, 70, 0.3)',
+        boxShadow: '0 2px 10px rgba(230, 57, 70, 0.1)',
+      }}
     >
-      <svg width="24" height="24" viewBox="0 0 48 48" fill="none">
-        <text x="24" y="14" textAnchor="middle" fontSize="14" fill="#fafafa" fontFamily="Arial" transform="rotate(180 24 14)">&#9824;</text>
-        <text x="34" y="24" textAnchor="middle" fontSize="14" fill="#ef4444" fontFamily="Arial" transform="rotate(-90 34 24)">&#9829;</text>
-        <text x="24" y="34" textAnchor="middle" fontSize="14" fill="#fafafa" fontFamily="Arial">&#9827;</text>
-        <text x="14" y="24" textAnchor="middle" fontSize="14" fill="#ef4444" fontFamily="Arial" transform="rotate(90 14 24)">&#9830;</text>
-      </svg>
+      <span className="text-lg font-serif" style={{ color: '#E63946' }}>♠</span>
     </div>
   );
 }
@@ -33,8 +32,8 @@ export function Nav() {
     >
       <Link href="/" className="flex items-center gap-3">
         <CardSuitsLogo />
-        <span className="text-lg font-bold tracking-tight text-foreground">
-          Creator<span style={{ color: '#ef4444' }}>Luck</span>
+        <span className="text-lg font-bold tracking-tight" style={{ color: 'rgba(255,255,255,0.9)' }}>
+          Creator<span style={{ color: '#E63946' }}>Luck</span>
         </span>
       </Link>
 
@@ -51,8 +50,12 @@ export function Nav() {
         <SignedOut>
           <a 
             href={`${APP_URL}/sign-in`} 
-            className="px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-200 hover:opacity-90"
-            style={{ backgroundColor: '#ef4444', color: '#ffffff' }}
+            className="px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-200 hover:scale-[0.98]"
+            style={{ 
+              background: 'linear-gradient(135deg, #E63946 0%, #c1121f 100%)', 
+              color: '#ffffff',
+              boxShadow: '0 2px 10px rgba(230, 57, 70, 0.3)',
+            }}
           >
             Sign In
           </a>

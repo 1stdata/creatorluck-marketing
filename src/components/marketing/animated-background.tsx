@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-// Elegant card suits for the luck/cards theme
 const cardSuits = ["♠", "♥", "♦", "♣"];
 
 interface FloatingElement {
@@ -12,144 +11,158 @@ interface FloatingElement {
   size: number;
   opacity: number;
   suit: string;
-  speedX: number;
-  speedY: number;
+  baseX: number;
+  baseY: number;
+  driftX: number;
+  driftY: number;
+  driftSpeed: number;
+  driftOffset: number;
   isRed: boolean;
-}
-
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  opacity: number;
-  speedY: number;
+  depth: number; // 0 = far, 1 = close
 }
 
 export function AnimatedBackground() {
   const [elements, setElements] = useState<FloatingElement[]>([]);
-  const [particles, setParticles] = useState<Particle[]>([]);
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
+  const frameRef = useRef(0);
 
   useEffect(() => {
-    // Generate elegant floating card suits
+    // Generate floating card suits with depth variation
     const generateElements = (): FloatingElement[] => {
-      return Array.from({ length: 12 }, (_, i) => {
+      return Array.from({ length: 16 }, (_, i) => {
         const suit = cardSuits[i % 4];
         const isRed = suit === "♥" || suit === "♦";
+        const depth = Math.random(); // 0-1, affects size/opacity/parallax
+        
         return {
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 100,
-          size: 40 + Math.random() * 60,
-          opacity: 0.04 + Math.random() * 0.04,
+          baseX: Math.random() * 100,
+          baseY: Math.random() * 100,
+          size: 30 + depth * 50, // 30-80px based on depth
+          opacity: 0.02 + depth * 0.06, // 2-8% based on depth
           suit,
-          speedX: (Math.random() - 0.5) * 0.008,
-          speedY: (Math.random() - 0.5) * 0.008,
+          driftX: 15 + Math.random() * 25, // 15-40px drift
+          driftY: 15 + Math.random() * 25,
+          driftSpeed: 15 + Math.random() * 15, // 15-30 second loops
+          driftOffset: Math.random() * Math.PI * 2,
           isRed,
+          depth,
         };
       });
     };
 
-    // Generate subtle bokeh particles
-    const generateParticles = (): Particle[] => {
-      return Array.from({ length: 30 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: 2 + Math.random() * 4,
-        opacity: 0.1 + Math.random() * 0.2,
-        speedY: -0.01 - Math.random() * 0.02,
-      }));
-    };
-
     setElements(generateElements());
-    setParticles(generateParticles());
 
-    // Slow, elegant animation
-    const interval = setInterval(() => {
+    // Smooth drift animation
+    const animate = () => {
+      frameRef.current += 0.016; // ~60fps
       setElements(prev =>
-        prev.map(el => ({
-          ...el,
-          x: (el.x + el.speedX + 100) % 100,
-          y: (el.y + el.speedY + 100) % 100,
-        }))
+        prev.map(el => {
+          const time = frameRef.current;
+          const xOffset = Math.sin(time / el.driftSpeed + el.driftOffset) * el.driftX;
+          const yOffset = Math.cos(time / el.driftSpeed + el.driftOffset * 0.7) * el.driftY;
+          
+          return {
+            ...el,
+            x: el.baseX + xOffset * 0.01,
+            y: el.baseY + yOffset * 0.01,
+          };
+        })
       );
-      setParticles(prev =>
-        prev.map(p => ({
-          ...p,
-          y: p.y + p.speedY < 0 ? 100 : p.y + p.speedY,
-        }))
-      );
-    }, 50);
+      requestAnimationFrame(animate);
+    };
+    
+    const animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, []);
 
-    return () => clearInterval(interval);
+  // Parallax on mouse move
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight,
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
-      {/* Premium gradient background */}
+      {/* Premium dark background */}
+      <div 
+        className="absolute inset-0"
+        style={{ backgroundColor: '#0D0D0D' }}
+      />
+
+      {/* Gradient overlays */}
       <div 
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(239, 68, 68, 0.08) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse at 50% 0%, rgba(230, 57, 70, 0.1) 0%, transparent 50%)',
         }}
       />
       <div 
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at 0% 50%, rgba(239, 68, 68, 0.04) 0%, transparent 40%)',
+          background: 'radial-gradient(ellipse at 0% 50%, rgba(230, 57, 70, 0.05) 0%, transparent 40%)',
         }}
       />
       <div 
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at 100% 80%, rgba(239, 68, 68, 0.06) 0%, transparent 40%)',
+          background: 'radial-gradient(ellipse at 100% 100%, rgba(230, 57, 70, 0.07) 0%, transparent 40%)',
         }}
       />
 
-      {/* Floating bokeh particles */}
-      {particles.map(p => (
-        <div
-          key={`particle-${p.id}`}
-          className="absolute rounded-full"
-          style={{
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            width: p.size,
-            height: p.size,
-            opacity: p.opacity,
-            backgroundColor: '#ef4444',
-            boxShadow: '0 0 10px rgba(239, 68, 68, 0.5)',
-          }}
-        />
-      ))}
+      {/* Floating card suits with parallax */}
+      {elements.map(el => {
+        // Parallax offset based on mouse position and depth
+        const parallaxX = (mousePos.x - 0.5) * 20 * el.depth;
+        const parallaxY = (mousePos.y - 0.5) * 20 * el.depth;
+        
+        // Pulse opacity for red suits
+        const pulseOpacity = el.isRed 
+          ? el.opacity * (0.8 + Math.sin(frameRef.current * 0.5 + el.driftOffset) * 0.2)
+          : el.opacity;
 
-      {/* Elegant floating card suits */}
-      {elements.map(el => (
-        <div
-          key={el.id}
-          className="absolute font-serif select-none"
-          style={{
-            left: `${el.x}%`,
-            top: `${el.y}%`,
-            fontSize: el.size,
-            opacity: el.opacity,
-            color: el.isRed ? '#ef4444' : '#ffffff',
-            textShadow: el.isRed 
-              ? '0 0 40px rgba(239, 68, 68, 0.3)' 
-              : '0 0 40px rgba(255, 255, 255, 0.1)',
-            transition: 'all 2s ease-out',
-          }}
-        >
-          {el.suit}
-        </div>
-      ))}
+        return (
+          <div
+            key={el.id}
+            className="absolute font-serif select-none transition-transform duration-1000 ease-out"
+            style={{
+              left: `calc(${el.x}% + ${parallaxX}px)`,
+              top: `calc(${el.y}% + ${parallaxY}px)`,
+              fontSize: el.size,
+              opacity: pulseOpacity,
+              color: el.isRed ? '#E63946' : 'rgba(255,255,255,0.8)',
+              textShadow: el.isRed 
+                ? '0 0 60px rgba(230, 57, 70, 0.4)' 
+                : '0 0 40px rgba(255, 255, 255, 0.15)',
+              filter: `blur(${(1 - el.depth) * 1}px)`,
+            }}
+          >
+            {el.suit}
+          </div>
+        );
+      })}
 
-      {/* Subtle vignette */}
+      {/* Subtle noise texture overlay */}
+      <div 
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* Cinematic vignette */}
       <div 
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.4) 100%)',
+          background: 'radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.5) 100%)',
         }}
       />
     </div>
