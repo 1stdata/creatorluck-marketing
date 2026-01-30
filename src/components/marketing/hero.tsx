@@ -106,10 +106,16 @@ export function Hero() {
           </h1>
 
           <p 
-            className="text-lg text-center lg:text-left mb-4 max-w-md mx-auto lg:mx-0 leading-relaxed"
-            style={{ color: 'rgba(255,255,255,0.7)' }}
+            className="text-xl text-center lg:text-left mb-3 max-w-md mx-auto lg:mx-0 leading-relaxed font-medium"
+            style={{ color: 'rgba(255,255,255,0.8)' }}
           >
-            Stop guessing. Discover what makes videos go viral with AI-powered analytics.
+            Virality isn't random. Neither is your success.
+          </p>
+          <p 
+            className="text-base text-center lg:text-left mb-4 max-w-md mx-auto lg:mx-0 leading-relaxed"
+            style={{ color: 'rgba(255,255,255,0.5)' }}
+          >
+            Most creators are gambling. You're counting cards.
           </p>
 
           {/* Proof element with pulsing red dot */}

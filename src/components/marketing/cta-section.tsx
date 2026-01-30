@@ -50,17 +50,16 @@ export function CtaSection() {
               className="font-serif text-5xl sm:text-6xl font-normal leading-[0.95] mb-6"
               style={{ color: 'rgba(255,255,255,0.95)' }}
             >
-              Stop
-              <br />
-              <span className="italic" style={{ color: '#E63946' }}>Gambling</span>
+              Start{" "}
+              <span className="italic" style={{ color: '#E63946' }}>Winning</span>
             </h2>
 
             <p 
               className="text-base leading-relaxed max-w-sm"
               style={{ color: 'rgba(255,255,255,0.5)' }}
             >
-              Most creators guess. The successful ones use data. 
-              Read the cards before you play them.
+              Paste a YouTube video. See why it went viral. 
+              Apply the pattern to your next video and grow.
             </p>
           </div>
 

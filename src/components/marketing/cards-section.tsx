@@ -8,7 +8,7 @@ const cards = [
     suit: "♠",
     suitColor: "#fafafa",
     title: "Hook",
-    description: "First 3 seconds determine everything. We analyze what makes viewers stay.",
+    description: "First 3 seconds determine everything. Find out if your opening line grabs or loses.",
     score: 85,
     metric: "Attention Capture",
   },
@@ -17,7 +17,7 @@ const cards = [
     suit: "♥",
     suitColor: "#E63946",
     title: "Retention",
-    description: "The patterns that lock attention. Where viewers drop and why.",
+    description: "The Hold. See exactly where viewers drop off — and why.",
     score: 72,
     metric: "Watch Time",
   },
@@ -26,7 +26,7 @@ const cards = [
     suit: "♣",
     suitColor: "#fafafa",
     title: "CTR",
-    description: "Thumbnail psychology decoded. What makes them click.",
+    description: "The Click. Diagnose your thumbnail and title psychology.",
     score: 91,
     metric: "Click Rate",
   },
@@ -35,7 +35,7 @@ const cards = [
     suit: "♦",
     suitColor: "#E63946",
     title: "Pattern",
-    description: "Your edge. Insights from 1.2M video database.",
+    description: "The Edge. Reveal the hidden DNA behind viral videos in your niche.",
     score: 78,
     metric: "Viral Potential",
   },
@@ -61,20 +61,20 @@ export function CardsSection() {
             className="font-mono text-[10px] uppercase tracking-[0.25em] mb-4 block"
             style={{ color: 'rgba(255,255,255,0.4)' }}
           >
-            The Analytics Deck
+            Make Your Own Luck
           </span>
           <h2 
             className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal mb-6 text-balance"
             style={{ color: 'rgba(255,255,255,0.95)' }}
           >
-            Four Cards That Predict{" "}
-            <span className="italic" style={{ color: '#E63946' }}>Success</span>
+            The Four{" "}
+            <span className="italic" style={{ color: '#E63946' }}>Cards</span>
           </h2>
           <p 
-            className="text-lg max-w-lg mx-auto"
+            className="text-lg max-w-xl mx-auto"
             style={{ color: 'rgba(255,255,255,0.6)' }}
           >
-            Every viral video shares the same winning hand. Learn to read it.
+            Decode what makes videos go viral using our proprietary pattern analysis.
           </p>
         </div>
 
