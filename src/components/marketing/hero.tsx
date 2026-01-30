@@ -49,10 +49,15 @@ export function Hero() {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center px-6 lg:px-12 pt-32 pb-16 relative overflow-hidden">
-      {/* Colorful gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-accent/5 to-transparent pointer-events-none" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Red glow accents */}
+      <div 
+        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none"
+        style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)' }}
+      />
+      <div 
+        className="absolute bottom-1/3 right-1/4 w-64 h-64 rounded-full blur-3xl pointer-events-none"
+        style={{ backgroundColor: 'rgba(239, 68, 68, 0.08)' }}
+      />
       
       <div className="relative z-10 w-full max-w-[720px]">
         <div className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground mb-6 text-center">
@@ -79,11 +84,12 @@ export function Hero() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-5 py-2.5 text-sm font-medium rounded-full flex items-center gap-2 transition-all duration-200 ${
+                className="px-5 py-2.5 text-sm font-medium rounded-full flex items-center gap-2 transition-all duration-200"
+                style={
                   activeTab === tab.id
-                    ? "bg-foreground text-background"
-                    : "bg-card text-muted-foreground border border-border hover:border-muted-foreground/50 hover:text-foreground"
-                }`}
+                    ? { backgroundColor: '#ef4444', color: '#ffffff' }
+                    : { backgroundColor: '#141414', color: '#a1a1a1', border: '1px solid #262626' }
+                }
               >
                 <span
                   className="text-sm"
@@ -95,7 +101,14 @@ export function Hero() {
           </div>
 
           {/* Search Input */}
-          <div className="flex rounded-2xl border border-border bg-card/80 backdrop-blur-sm overflow-hidden mb-4 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/20 transition-all duration-200 shadow-lg shadow-accent/5">
+          <div 
+            className="flex rounded-2xl overflow-hidden mb-4 transition-all duration-200"
+            style={{ 
+              backgroundColor: 'rgba(20, 20, 20, 0.9)', 
+              border: '1px solid rgba(239, 68, 68, 0.3)',
+              boxShadow: '0 10px 40px rgba(239, 68, 68, 0.1)'
+            }}
+          >
             <input
               type="text"
               value={searchQuery}

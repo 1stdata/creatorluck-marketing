@@ -4,18 +4,22 @@ import { CardsSection } from "@/components/marketing/cards-section";
 import { StatsBar } from "@/components/marketing/stats-bar";
 import { CtaSection } from "@/components/marketing/cta-section";
 import { Footer } from "@/components/marketing/footer";
+import { AnimatedBackground } from "@/components/marketing/animated-background";
 
 export default function LandingPage() {
   return (
-    <>
-      <Nav />
-      <main>
-        <Hero />
-        <CardsSection />
-        <StatsBar />
-        <CtaSection />
-      </main>
-      <Footer />
-    </>
+    <div className="relative min-h-screen" style={{ backgroundColor: '#0a0a0a' }}>
+      <AnimatedBackground />
+      <div className="relative" style={{ zIndex: 1 }}>
+        <Nav />
+        <main>
+          <Hero />
+          <CardsSection />
+          <StatsBar />
+          <CtaSection />
+        </main>
+        <Footer />
+      </div>
+    </div>
   );
 }

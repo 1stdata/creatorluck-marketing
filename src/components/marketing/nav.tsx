@@ -7,7 +7,10 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.creatorluck.io";
 
 function CardSuitsLogo() {
   return (
-    <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/30 flex items-center justify-center">
+    <div 
+      className="w-10 h-10 rounded-xl flex items-center justify-center"
+      style={{ backgroundColor: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.4)' }}
+    >
       <svg width="24" height="24" viewBox="0 0 48 48" fill="none">
         <text x="24" y="14" textAnchor="middle" fontSize="14" fill="#fafafa" fontFamily="Arial" transform="rotate(180 24 14)">&#9824;</text>
         <text x="34" y="24" textAnchor="middle" fontSize="14" fill="#ef4444" fontFamily="Arial" transform="rotate(-90 34 24)">&#9829;</text>
@@ -20,7 +23,14 @@ function CardSuitsLogo() {
 
 export function Nav() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center h-16 px-6 lg:px-12 glass border-b border-accent/10">
+    <nav 
+      className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center h-16 px-6 lg:px-12"
+      style={{ 
+        backdropFilter: 'blur(24px)', 
+        backgroundColor: 'rgba(10, 10, 10, 0.85)', 
+        borderBottom: '1px solid rgba(239, 68, 68, 0.15)' 
+      }}
+    >
       <Link href="/" className="flex items-center gap-3">
         <CardSuitsLogo />
         <span className="text-lg font-bold tracking-tight text-foreground">
@@ -39,7 +49,11 @@ export function Nav() {
         </div>
 
         <SignedOut>
-          <a href={`${APP_URL}/sign-in`} className="btn-primary">
+          <a 
+            href={`${APP_URL}/sign-in`} 
+            className="px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-200 hover:opacity-90"
+            style={{ backgroundColor: '#ef4444', color: '#ffffff' }}
+          >
             Sign In
           </a>
         </SignedOut>
