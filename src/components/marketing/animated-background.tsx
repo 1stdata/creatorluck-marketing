@@ -2,65 +2,82 @@
 
 import { useEffect, useState } from "react";
 
-// YouTube-style play button and video thumbnail icons
-const videoIcons = [
-  // Play button
-  `<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>`,
-  // Thumbnail frame
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg>`,
-  // Video camera
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 9l4-2v10l-4-2"/></svg>`,
-  // Analytics chart
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 5-6"/></svg>`,
-  // Trending up
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>`,
-  // Eye/view
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
-];
+// Elegant card suits for the luck/cards theme
+const cardSuits = ["♠", "♥", "♦", "♣"];
 
-interface FloatingIcon {
+interface FloatingElement {
   id: number;
   x: number;
   y: number;
   size: number;
   opacity: number;
-  icon: string;
+  suit: string;
   speedX: number;
   speedY: number;
-  rotation: number;
-  rotationSpeed: number;
+  isRed: boolean;
+}
+
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  speedY: number;
 }
 
 export function AnimatedBackground() {
-  const [icons, setIcons] = useState<FloatingIcon[]>([]);
+  const [elements, setElements] = useState<FloatingElement[]>([]);
+  const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
-    // Generate random floating icons
-    const generateIcons = (): FloatingIcon[] => {
+    // Generate elegant floating card suits
+    const generateElements = (): FloatingElement[] => {
+      return Array.from({ length: 12 }, (_, i) => {
+        const suit = cardSuits[i % 4];
+        const isRed = suit === "♥" || suit === "♦";
+        return {
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: 40 + Math.random() * 60,
+          opacity: 0.04 + Math.random() * 0.04,
+          suit,
+          speedX: (Math.random() - 0.5) * 0.008,
+          speedY: (Math.random() - 0.5) * 0.008,
+          isRed,
+        };
+      });
+    };
+
+    // Generate subtle bokeh particles
+    const generateParticles = (): Particle[] => {
       return Array.from({ length: 30 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: 30 + Math.random() * 50,
-        opacity: 0.08 + Math.random() * 0.12,
-        icon: videoIcons[Math.floor(Math.random() * videoIcons.length)],
-        speedX: (Math.random() - 0.5) * 0.03,
-        speedY: (Math.random() - 0.5) * 0.03,
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 0.15,
+        size: 2 + Math.random() * 4,
+        opacity: 0.1 + Math.random() * 0.2,
+        speedY: -0.01 - Math.random() * 0.02,
       }));
     };
 
-    setIcons(generateIcons());
+    setElements(generateElements());
+    setParticles(generateParticles());
 
-    // Animate icons
+    // Slow, elegant animation
     const interval = setInterval(() => {
-      setIcons(prevIcons =>
-        prevIcons.map(icon => ({
-          ...icon,
-          x: (icon.x + icon.speedX + 100) % 100,
-          y: (icon.y + icon.speedY + 100) % 100,
-          rotation: icon.rotation + icon.rotationSpeed,
+      setElements(prev =>
+        prev.map(el => ({
+          ...el,
+          x: (el.x + el.speedX + 100) % 100,
+          y: (el.y + el.speedY + 100) % 100,
+        }))
+      );
+      setParticles(prev =>
+        prev.map(p => ({
+          ...p,
+          y: p.y + p.speedY < 0 ? 100 : p.y + p.speedY,
         }))
       );
     }, 50);
@@ -70,47 +87,69 @@ export function AnimatedBackground() {
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
-      {/* Gradient overlays for depth */}
+      {/* Premium gradient background */}
       <div 
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at 30% 20%, rgba(239, 68, 68, 0.15) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at 50% 0%, rgba(239, 68, 68, 0.08) 0%, transparent 60%)',
         }}
       />
       <div 
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at 70% 80%, rgba(239, 68, 68, 0.1) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at 0% 50%, rgba(239, 68, 68, 0.04) 0%, transparent 40%)',
         }}
       />
-      
-      {/* Floating icons */}
-      {icons.map(icon => (
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: 'radial-gradient(ellipse at 100% 80%, rgba(239, 68, 68, 0.06) 0%, transparent 40%)',
+        }}
+      />
+
+      {/* Floating bokeh particles */}
+      {particles.map(p => (
         <div
-          key={icon.id}
-          className="absolute transition-all duration-1000 ease-linear"
+          key={`particle-${p.id}`}
+          className="absolute rounded-full"
           style={{
-            left: `${icon.x}%`,
-            top: `${icon.y}%`,
-            width: icon.size,
-            height: icon.size,
-            opacity: icon.opacity,
-            color: '#ef4444',
-            transform: `rotate(${icon.rotation}deg)`,
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            width: p.size,
+            height: p.size,
+            opacity: p.opacity,
+            backgroundColor: '#ef4444',
+            boxShadow: '0 0 10px rgba(239, 68, 68, 0.5)',
           }}
-          dangerouslySetInnerHTML={{ __html: icon.icon }}
         />
       ))}
 
-      {/* Grid pattern overlay */}
+      {/* Elegant floating card suits */}
+      {elements.map(el => (
+        <div
+          key={el.id}
+          className="absolute font-serif select-none"
+          style={{
+            left: `${el.x}%`,
+            top: `${el.y}%`,
+            fontSize: el.size,
+            opacity: el.opacity,
+            color: el.isRed ? '#ef4444' : '#ffffff',
+            textShadow: el.isRed 
+              ? '0 0 40px rgba(239, 68, 68, 0.3)' 
+              : '0 0 40px rgba(255, 255, 255, 0.1)',
+            transition: 'all 2s ease-out',
+          }}
+        >
+          {el.suit}
+        </div>
+      ))}
+
+      {/* Subtle vignette */}
       <div 
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0"
         style={{
-          backgroundImage: `
-            linear-gradient(rgba(239, 68, 68, 0.6) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(239, 68, 68, 0.6) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
+          background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.4) 100%)',
         }}
       />
     </div>
