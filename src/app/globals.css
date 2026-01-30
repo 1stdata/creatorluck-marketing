@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Modern Design System - CreatorLuck */
+/* CreatorLuck Design System */
 :root {
   --background: #0a0a0a;
   --foreground: #fafafa;
@@ -16,13 +16,11 @@
   --radius: 0.75rem;
 }
 
-/* Selection */
 ::selection {
   background: var(--accent);
   color: var(--foreground);
 }
 
-/* Modern component styles */
 @layer components {
   .btn-primary {
     padding: 0.75rem 1.5rem;
@@ -127,7 +125,6 @@
   }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
