@@ -40,7 +40,7 @@ export default function RootLayout({
         lang="en"
         className={`${jakarta.variable} ${spaceMono.variable} ${instrumentSerif.variable}`}
       >
-        <body className="font-sans bg-white text-black antialiased">
+        <body className="font-sans bg-background text-foreground antialiased">
           {children}
         </body>
       </html>

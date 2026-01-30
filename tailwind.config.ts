@@ -10,22 +10,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          red: "#ff0000",
-          black: "#000000",
-          white: "#ffffff",
-          gray: "#666666",
-          "gray-light": "#f5f5f5",
-          "gray-border": "#e0e0e0",
-        },
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        card: "var(--card)",
+        "card-foreground": "var(--card-foreground)",
+        muted: "var(--muted)",
+        "muted-foreground": "var(--muted-foreground)",
+        border: "var(--border)",
+        accent: "var(--accent)",
+        "accent-foreground": "var(--accent-foreground)",
       },
       fontFamily: {
         sans: ["var(--font-jakarta)", "system-ui", "sans-serif"],
         serif: ["var(--font-instrument)", "Georgia", "serif"],
         mono: ["var(--font-space)", "monospace"],
       },
-      borderWidth: {
-        brutal: "2px",
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
     },
   },

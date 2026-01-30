@@ -7,20 +7,24 @@ const stats = [
 
 export function StatsBar() {
   return (
-    <section className="grid grid-cols-2 lg:grid-cols-4 border-b-2 border-black">
-      {stats.map((stat, index) => (
-        <div
-          key={stat.label}
-          className={`p-10 text-center ${
-            index < stats.length - 1 ? "border-r-0 lg:border-r-2 border-black" : ""
-          } ${index < 2 ? "border-b-2 lg:border-b-0 border-black" : ""}`}
-        >
-          <div className="font-serif text-5xl font-normal leading-none">{stat.value}</div>
-          <div className="font-mono text-[10px] uppercase tracking-wider text-brand-gray mt-2.5">
-            {stat.label}
-          </div>
+    <section className="px-6 lg:px-12 py-16">
+      <div className="max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="text-center p-6 rounded-2xl bg-card border border-border"
+            >
+              <div className="font-serif text-4xl lg:text-5xl font-normal leading-none text-foreground mb-2">
+                {stat.value}
+              </div>
+              <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </section>
   );
 }

@@ -2,20 +2,20 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="flex justify-between items-center h-16 px-8 lg:px-16 border-t-2 border-black text-sm text-brand-gray">
+    <footer className="flex flex-col sm:flex-row justify-between items-center gap-4 py-8 px-6 lg:px-12 border-t border-border text-sm text-muted-foreground">
       <span>&copy; 2026 CreatorLuck</span>
-      <div className="flex gap-8">
-        <Link href="/terms" className="hover:text-black transition-colors">
+      <div className="flex gap-6">
+        <Link href="/terms" className="hover:text-foreground transition-colors">
           Terms
         </Link>
-        <Link href="/privacy" className="hover:text-black transition-colors">
+        <Link href="/privacy" className="hover:text-foreground transition-colors">
           Privacy
         </Link>
         <a
           href="https://twitter.com/creatorluck"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-black transition-colors"
+          className="hover:text-foreground transition-colors"
         >
           Twitter
         </a>
