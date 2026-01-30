@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Plus_Jakarta_Sans, Space_Mono, Instrument_Serif } from "next/font/google";
+// Styles loaded from main.css - globals.css removed
 import "./main.css";
 
 const jakarta = Plus_Jakarta_Sans({
