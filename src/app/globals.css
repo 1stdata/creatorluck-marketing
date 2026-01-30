@@ -29,18 +29,11 @@
 }
 
 /* Modern utilities */
-@layer utilities {
-  .bg-background { background-color: var(--background); }
-  .bg-card { background-color: var(--card); }
-  .bg-muted { background-color: var(--muted); }
-  .bg-accent { background-color: var(--accent); }
-  .text-foreground { color: var(--foreground); }
-  .text-muted-foreground { color: var(--muted-foreground); }
-  .text-accent { color: var(--accent); }
-  .border-border { border-color: var(--border); }
-
+@layer components {
   .btn-primary {
-    @apply px-6 py-3 bg-accent text-accent-foreground font-semibold text-sm rounded-lg transition-all duration-200;
+    @apply px-6 py-3 font-semibold text-sm rounded-lg transition-all duration-200;
+    background-color: var(--accent);
+    color: var(--accent-foreground);
   }
 
   .btn-primary:hover {
@@ -48,35 +41,46 @@
   }
 
   .btn-secondary {
-    @apply px-6 py-3 bg-card text-foreground font-semibold text-sm rounded-lg border border-border transition-all duration-200;
+    @apply px-6 py-3 font-semibold text-sm rounded-lg transition-all duration-200;
+    background-color: var(--card);
+    color: var(--foreground);
+    border: 1px solid var(--border);
   }
 
   .btn-secondary:hover {
-    @apply bg-muted border-muted-foreground/30;
+    background-color: var(--muted);
   }
 
   .btn-ghost {
-    @apply px-6 py-3 text-muted-foreground font-medium text-sm rounded-lg transition-all duration-200;
+    @apply px-6 py-3 font-medium text-sm rounded-lg transition-all duration-200;
+    color: var(--muted-foreground);
   }
 
   .btn-ghost:hover {
-    @apply text-foreground bg-muted;
+    color: var(--foreground);
+    background-color: var(--muted);
   }
 
   .input-modern {
-    @apply border border-border rounded-lg px-4 py-3 outline-none bg-card text-foreground font-sans transition-all duration-200;
+    @apply rounded-lg px-4 py-3 outline-none font-sans transition-all duration-200;
+    border: 1px solid var(--border);
+    background-color: var(--card);
+    color: var(--foreground);
   }
 
   .input-modern:focus {
-    @apply border-accent ring-1 ring-accent/20;
+    border-color: var(--accent);
   }
 
   .input-modern::placeholder {
-    @apply text-muted-foreground;
+    color: var(--muted-foreground);
   }
 
   .select-modern {
-    @apply border border-border rounded-lg px-4 py-3 bg-card text-foreground font-sans font-medium cursor-pointer outline-none appearance-none transition-all duration-200;
+    @apply rounded-lg px-4 py-3 font-sans font-medium cursor-pointer outline-none appearance-none transition-all duration-200;
+    border: 1px solid var(--border);
+    background-color: var(--card);
+    color: var(--foreground);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a1a1a1' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
@@ -85,19 +89,24 @@
 
   .select-modern:hover,
   .select-modern:focus {
-    @apply border-accent;
+    border-color: var(--accent);
   }
 
   .card-modern {
-    @apply bg-card border border-border rounded-2xl transition-all duration-300;
+    @apply rounded-2xl transition-all duration-300;
+    background-color: var(--card);
+    border: 1px solid var(--border);
   }
 
   .card-modern:hover {
-    @apply border-muted-foreground/30 shadow-lg shadow-black/20;
+    @apply shadow-lg shadow-black/20;
+    border-color: rgba(161, 161, 161, 0.3);
   }
 
   .glass {
-    @apply bg-background/80 backdrop-blur-xl border border-border;
+    @apply backdrop-blur-xl;
+    background-color: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--border);
   }
 }
 
