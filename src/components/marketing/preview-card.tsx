@@ -28,7 +28,7 @@ export function PreviewCard() {
   return (
     <div 
       className="relative"
-      style={{ width: 400, height: 500 }}
+      style={{ width: 400, height: 540 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -52,7 +52,7 @@ export function PreviewCard() {
         className="absolute rounded-2xl"
         style={{
           width: 320,
-          height: 420,
+          height: 460,
           left: isHovered ? 50 : 40,
           top: (isHovered ? 50 : 40) + floatY * 0.3,
           transform: `rotate(${isHovered ? -3 : -2}deg)`,
@@ -70,7 +70,7 @@ export function PreviewCard() {
         className="absolute rounded-2xl"
         style={{
           width: 320,
-          height: 420,
+          height: 460,
           left: isHovered ? 25 : 20,
           top: (isHovered ? 25 : 20) + floatY * 0.6,
           transform: `rotate(${isHovered ? 1 : 2}deg)`,
@@ -88,7 +88,7 @@ export function PreviewCard() {
         className="absolute rounded-2xl overflow-hidden cursor-pointer"
         style={{
           width: 320,
-          height: 420,
+          height: 460,
           left: 0,
           top: floatY,
           transform: isDealt 
