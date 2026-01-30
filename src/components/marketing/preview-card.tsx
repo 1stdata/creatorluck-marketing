@@ -263,7 +263,7 @@ export function PreviewCard() {
             </p>
           </div>
 
-          {/* Estimated Views */}
+          {/* Predicted Views */}
           <div 
             className="pt-4"
             style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
@@ -272,13 +272,13 @@ export function PreviewCard() {
               className="text-[10px] font-medium uppercase tracking-[0.15em] block mb-1"
               style={{ color: 'rgba(255,255,255,0.5)' }}
             >
-              Est. Views
+              Predicted Views
             </span>
             <span 
-              className="text-3xl font-bold"
+              className="text-2xl font-bold"
               style={{ color: '#22C55E' }}
             >
-              142M
+              142,000,000
             </span>
           </div>
 
