@@ -37,17 +37,17 @@ export function AnimatedBackground() {
   useEffect(() => {
     // Generate random floating icons
     const generateIcons = (): FloatingIcon[] => {
-      return Array.from({ length: 20 }, (_, i) => ({
+      return Array.from({ length: 30 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: 20 + Math.random() * 30,
-        opacity: 0.03 + Math.random() * 0.05,
+        size: 30 + Math.random() * 50,
+        opacity: 0.08 + Math.random() * 0.12,
         icon: videoIcons[Math.floor(Math.random() * videoIcons.length)],
-        speedX: (Math.random() - 0.5) * 0.02,
-        speedY: (Math.random() - 0.5) * 0.02,
+        speedX: (Math.random() - 0.5) * 0.03,
+        speedY: (Math.random() - 0.5) * 0.03,
         rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 0.1,
+        rotationSpeed: (Math.random() - 0.5) * 0.15,
       }));
     };
 
@@ -74,13 +74,13 @@ export function AnimatedBackground() {
       <div 
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at 30% 20%, rgba(239, 68, 68, 0.08) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at 30% 20%, rgba(239, 68, 68, 0.15) 0%, transparent 50%)',
         }}
       />
       <div 
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at 70% 80%, rgba(239, 68, 68, 0.05) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at 70% 80%, rgba(239, 68, 68, 0.1) 0%, transparent 50%)',
         }}
       />
       
@@ -104,13 +104,13 @@ export function AnimatedBackground() {
 
       {/* Grid pattern overlay */}
       <div 
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(239, 68, 68, 0.5) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(239, 68, 68, 0.5) 1px, transparent 1px)
+            linear-gradient(rgba(239, 68, 68, 0.6) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(239, 68, 68, 0.6) 1px, transparent 1px)
           `,
-          backgroundSize: '60px 60px',
+          backgroundSize: '50px 50px',
         }}
       />
     </div>
