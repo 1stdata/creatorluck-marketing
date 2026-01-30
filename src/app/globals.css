@@ -1,0 +1,5 @@
+/* This file exists to satisfy cached server references */
+/* All styles are in main.css which is imported by layout.tsx */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
