@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
@@ -31,6 +32,8 @@ function CardSuitsLogo() {
 }
 
 export function Nav() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <nav 
       className="fixed top-0 left-0 right-0 z-50 h-18"
@@ -72,7 +75,25 @@ export function Nav() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-4 sm:gap-8">
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="sm:hidden p-2 rounded-lg transition-colors duration-200"
+            style={{ color: 'rgba(255,255,255,0.6)' }}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+
           {/* Navigation links */}
           <div className="hidden sm:flex gap-1">
             <Link 
@@ -132,7 +153,7 @@ export function Nav() {
             </a>
             <a 
               href={`${APP_URL}/sign-up`} 
-              className="relative px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-200 hover:scale-[0.98] overflow-hidden"
+              className="relative px-4 sm:px-5 py-2 sm:py-2.5 text-sm font-semibold rounded-lg transition-all duration-200 hover:scale-[0.98] overflow-hidden"
               style={{ 
                 background: 'linear-gradient(135deg, #E63946 0%, #c1121f 100%)', 
                 color: '#ffffff',
@@ -146,9 +167,10 @@ export function Nav() {
                   background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%)',
                 }}
               />
-              <span className="relative flex items-center gap-2">
+              <span className="relative flex items-center gap-1.5 sm:gap-2">
                 <span style={{ fontSize: 12 }}>♠</span>
-                Get Started Free
+                <span className="hidden sm:inline">Get Started Free</span>
+                <span className="sm:hidden">Start</span>
               </span>
             </a>
           </div>
@@ -157,7 +179,7 @@ export function Nav() {
             <div className="flex items-center gap-4">
               <a
                 href={`${APP_URL}/dashboard`}
-                className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
+                className="hidden sm:block px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
                 style={{ color: 'rgba(255,255,255,0.6)' }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = '#E63946';
@@ -189,6 +211,82 @@ export function Nav() {
           </SignedIn>
         </div>
       </div>
+
+      {/* Mobile menu panel */}
+      {mobileMenuOpen && (
+        <div 
+          className="sm:hidden absolute top-full left-0 right-0 border-b"
+          style={{ 
+            backgroundColor: 'rgba(13, 13, 13, 0.98)',
+            backdropFilter: 'blur(24px)',
+            borderColor: 'rgba(255,255,255,0.05)',
+          }}
+        >
+          <div className="px-6 py-6 flex flex-col gap-2">
+            <Link 
+              href="/how-it-works" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-4 py-3 text-base font-medium rounded-lg transition-all duration-200"
+              style={{ color: 'rgba(255,255,255,0.8)' }}
+            >
+              How it works
+            </Link>
+            <Link 
+              href="/pricing" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-4 py-3 text-base font-medium rounded-lg transition-all duration-200"
+              style={{ color: 'rgba(255,255,255,0.8)' }}
+            >
+              Pricing
+            </Link>
+            <Link 
+              href="/features" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-4 py-3 text-base font-medium rounded-lg transition-all duration-200"
+              style={{ color: 'rgba(255,255,255,0.8)' }}
+            >
+              Features
+            </Link>
+            <Link 
+              href="/about" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-4 py-3 text-base font-medium rounded-lg transition-all duration-200"
+              style={{ color: 'rgba(255,255,255,0.8)' }}
+            >
+              About
+            </Link>
+            
+            {/* Divider */}
+            <div 
+              className="my-2 h-[1px]"
+              style={{ background: 'rgba(255,255,255,0.08)' }}
+            />
+            
+            <a 
+              href={`${APP_URL}/sign-in`}
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-4 py-3 text-base font-medium rounded-lg transition-all duration-200"
+              style={{ color: 'rgba(255,255,255,0.6)' }}
+            >
+              Sign In
+            </a>
+            <a 
+              href={`${APP_URL}/sign-up`}
+              onClick={() => setMobileMenuOpen(false)}
+              className="mt-2 px-4 py-3 text-base font-semibold rounded-lg text-center transition-all duration-200"
+              style={{ 
+                background: 'linear-gradient(135deg, #E63946 0%, #c1121f 100%)', 
+                color: '#ffffff',
+              }}
+            >
+              <span className="flex items-center justify-center gap-2">
+                <span style={{ fontSize: 14 }}>♠</span>
+                Get Started Free
+              </span>
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

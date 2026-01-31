@@ -120,34 +120,36 @@ export function Hero() {
 
           {/* Proof element with pulsing red dot */}
           <div 
-            className="font-mono text-xs uppercase tracking-[0.2em] mb-10 text-center lg:text-left flex items-center gap-3 justify-center lg:justify-start"
+            className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] mb-8 sm:mb-10 text-center lg:text-left flex flex-col sm:flex-row items-center gap-2 sm:gap-3 justify-center lg:justify-start"
             style={{ color: 'rgba(255,255,255,0.6)' }}
           >
-            <span 
-              className="inline-block w-2 h-2 rounded-full animate-pulse"
-              style={{ 
-                backgroundColor: '#E63946',
-                boxShadow: '0 0 8px rgba(230, 57, 70, 0.6)',
-              }}
-            />
-            <span>2.3M+ videos analyzed</span>
-            <span style={{ opacity: 0.3 }}>•</span>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span 
+                className="inline-block w-2 h-2 rounded-full animate-pulse"
+                style={{ 
+                  backgroundColor: '#E63946',
+                  boxShadow: '0 0 8px rgba(230, 57, 70, 0.6)',
+                }}
+              />
+              <span>2.3M+ videos analyzed</span>
+            </div>
+            <span className="hidden sm:inline" style={{ opacity: 0.3 }}>•</span>
             <span>Used by 12,000+ creators</span>
           </div>
 
           {/* Search Wrapper */}
           <div className="w-full">
             {/* Tabs with suit icons */}
-            <div className="flex gap-2 mb-4 justify-center lg:justify-start relative">
+            <div className="flex gap-2 mb-4 justify-start lg:justify-start relative overflow-x-auto pb-1 -mx-1 px-1 scrollbar-hide">
               {[
-                { id: "topic" as const, icon: "♠", label: "By Topic" },
-                { id: "channel" as const, icon: "♥", label: "By Channel" },
-                { id: "video" as const, icon: "♦", label: "By Video" },
+                { id: "topic" as const, icon: "♠", label: "Topic", labelFull: "By Topic" },
+                { id: "channel" as const, icon: "♥", label: "Channel", labelFull: "By Channel" },
+                { id: "video" as const, icon: "♦", label: "Video", labelFull: "By Video" },
               ].map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className="px-5 py-2.5 text-sm font-medium rounded-full flex items-center gap-2 transition-all duration-200"
+                  className="px-4 sm:px-5 py-2.5 text-sm font-medium rounded-full flex items-center gap-1.5 sm:gap-2 transition-all duration-200 whitespace-nowrap flex-shrink-0"
                   style={
                     activeTab === tab.id
                       ? { 
@@ -184,7 +186,8 @@ export function Hero() {
                   >
                     {tab.icon}
                   </span>
-                  {tab.label}
+                  <span className="hidden sm:inline">{tab.labelFull}</span>
+                  <span className="sm:hidden">{tab.label}</span>
                 </button>
               ))}
             </div>
@@ -213,14 +216,15 @@ export function Hero() {
               {/* Deal Me In button with shine animation */}
               <button
                 onClick={handleSearch}
-                className="relative px-8 py-4 text-sm font-semibold transition-all duration-200 whitespace-nowrap hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"
+                className="relative px-5 sm:px-8 py-4 text-sm font-semibold transition-all duration-200 whitespace-nowrap hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"
                 style={{ 
                   background: 'linear-gradient(135deg, #E63946, #B91C2C)',
                   color: '#ffffff',
                   boxShadow: '0 4px 15px rgba(230, 57, 70, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
                 }}
               >
-                <span className="relative z-10">Deal Me In</span>
+                <span className="relative z-10 hidden sm:inline">Deal Me In</span>
+                <span className="relative z-10 sm:hidden">Go</span>
                 {/* Shine effect */}
                 <span 
                   className="absolute top-0 left-0 w-full h-full pointer-events-none"
