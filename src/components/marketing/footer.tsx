@@ -166,7 +166,7 @@ export function Footer() {
                 Product
               </h4>
               <ul className="space-y-3">
-                {['How it works', 'Pricing', 'Features', 'API'].map((item) => (
+                {['How it works', 'Pricing', 'Features'].map((item) => (
                   <li key={item}>
                     <Link 
                       href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
@@ -191,7 +191,7 @@ export function Footer() {
                 Company
               </h4>
               <ul className="space-y-3">
-                {['About', 'Blog', 'Careers', 'Contact'].map((item) => (
+                {['About', 'Contact'].map((item) => (
                   <li key={item}>
                     <Link 
                       href={`/${item.toLowerCase()}`}

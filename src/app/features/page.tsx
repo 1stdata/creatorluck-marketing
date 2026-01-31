@@ -7,35 +7,83 @@ import { AnimatedBackground } from "@/components/marketing/animated-background";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.creatorluck.io";
 
-const steps = [
+const features = [
   {
     number: "01",
     suit: "♠",
     suitColor: "#fafafa",
-    title: "Search",
-    description: "Enter a topic, channel, or video URL. We scan YouTube's data to find what's working in your niche.",
-    detail: "Our algorithm analyzes millions of videos to surface patterns you'd never find manually.",
+    title: "Hook Analysis",
+    description: "Discover what makes the first 3 seconds of top-performing videos so compelling.",
+    details: [
+      "Frame-by-frame breakdown",
+      "Opening line effectiveness",
+      "Pattern recognition across niches",
+    ],
   },
   {
     number: "02",
     suit: "♥",
     suitColor: "#E63946",
-    title: "Analyze",
-    description: "Our AI decodes hooks, retention patterns, CTR psychology, and viral signals.",
-    detail: "Get frame-by-frame breakdown of what makes top performers stand out from the crowd.",
+    title: "Retention Tracking",
+    description: "See exactly where viewers drop off and learn why they stay engaged.",
+    details: [
+      "Watch time analysis",
+      "Drop-off point identification",
+      "Engagement pattern insights",
+    ],
   },
   {
     number: "03",
+    suit: "♣",
+    suitColor: "#fafafa",
+    title: "CTR Optimization",
+    description: "Decode the psychology behind thumbnails and titles that get clicked.",
+    details: [
+      "Thumbnail scoring",
+      "Title effectiveness analysis",
+      "A/B testing insights",
+    ],
+  },
+  {
+    number: "04",
     suit: "♦",
     suitColor: "#E63946",
-    title: "Apply",
-    description: "Get actionable insights to craft your next video with data-backed confidence.",
-    detail: "Transform raw data into a winning content strategy that grows your channel.",
+    title: "Viral Pattern Detection",
+    description: "Uncover the hidden DNA that makes videos go viral in your niche.",
+    details: [
+      "Cross-video pattern matching",
+      "Trend identification",
+      "Viral signal scoring",
+    ],
+  },
+  {
+    number: "05",
+    suit: "♥",
+    suitColor: "#E63946",
+    title: "Channel Intelligence",
+    description: "Analyze any channel to understand their winning content strategy.",
+    details: [
+      "Upload frequency analysis",
+      "Best performing content types",
+      "Growth trajectory insights",
+    ],
+  },
+  {
+    number: "06",
+    suit: "♠",
+    suitColor: "#fafafa",
+    title: "Niche Explorer",
+    description: "Discover trending topics and underserved content opportunities.",
+    details: [
+      "Topic popularity tracking",
+      "Competition analysis",
+      "Content gap identification",
+    ],
   },
 ];
 
-export default function HowItWorksPage() {
-  const [hoveredStep, setHoveredStep] = useState<string | null>(null);
+export default function FeaturesPage() {
+  const [hoveredFeature, setHoveredFeature] = useState<string | null>(null);
 
   return (
     <div className="relative min-h-screen" style={{ backgroundColor: '#0a0a0a' }}>
@@ -49,13 +97,13 @@ export default function HowItWorksPage() {
               className="font-mono text-[10px] uppercase tracking-[0.25em] mb-4 block"
               style={{ color: 'rgba(255,255,255,0.4)' }}
             >
-              The Process
+              Powerful Tools
             </span>
             <h1 
               className="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.05] tracking-tight mb-6 text-balance"
               style={{ color: 'rgba(255,255,255,0.95)' }}
             >
-              How It{" "}
+              Your Winning{" "}
               <span 
                 className="italic"
                 style={{ 
@@ -63,27 +111,27 @@ export default function HowItWorksPage() {
                   textShadow: '0 2px 30px rgba(230, 57, 70, 0.4)',
                 }}
               >
-                Works
+                Deck
               </span>
             </h1>
             <p 
               className="text-lg max-w-xl mx-auto leading-relaxed"
               style={{ color: 'rgba(255,255,255,0.6)' }}
             >
-              Three steps to data-driven content creation. Stop guessing, start knowing.
+              Every tool you need to decode viral content and create videos that perform.
             </p>
           </div>
 
-          {/* Steps grid */}
-          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
-            {steps.map((step) => (
+          {/* Features grid */}
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+            {features.map((feature) => (
               <div
-                key={step.number}
+                key={feature.number}
                 className="group relative cursor-pointer"
-                onMouseEnter={() => setHoveredStep(step.number)}
-                onMouseLeave={() => setHoveredStep(null)}
+                onMouseEnter={() => setHoveredFeature(feature.number)}
+                onMouseLeave={() => setHoveredFeature(null)}
                 style={{
-                  transform: hoveredStep === step.number ? 'translateY(-8px)' : 'translateY(0)',
+                  transform: hoveredFeature === feature.number ? 'translateY(-8px)' : 'translateY(0)',
                   transition: 'transform 300ms ease-out',
                 }}
               >
@@ -92,19 +140,19 @@ export default function HowItWorksPage() {
                   className="absolute -inset-3 rounded-3xl pointer-events-none transition-opacity duration-300"
                   style={{
                     background: 'radial-gradient(ellipse at center, rgba(230, 57, 70, 0.15) 0%, transparent 70%)',
-                    opacity: hoveredStep === step.number ? 1 : 0,
+                    opacity: hoveredFeature === feature.number ? 1 : 0,
                     filter: 'blur(15px)',
                   }}
                 />
                 
                 <div
-                  className="relative rounded-2xl p-8 flex flex-col h-full min-h-[320px] overflow-hidden"
+                  className="relative rounded-2xl p-7 flex flex-col h-full min-h-[280px] overflow-hidden"
                   style={{
                     background: 'linear-gradient(180deg, #1A1517 0%, #141414 100%)',
-                    border: hoveredStep === step.number 
+                    border: hoveredFeature === feature.number 
                       ? '1px solid rgba(230, 57, 70, 0.4)' 
                       : '1px solid rgba(255,255,255,0.06)',
-                    boxShadow: hoveredStep === step.number
+                    boxShadow: hoveredFeature === feature.number
                       ? '0 20px 40px rgba(0,0,0,0.5), 0 0 60px rgba(230, 57, 70, 0.1)'
                       : '0 10px 30px rgba(0,0,0,0.3)',
                     transition: 'all 300ms ease-out',
@@ -124,45 +172,51 @@ export default function HowItWorksPage() {
                       className="font-mono text-[10px] uppercase tracking-[0.2em]"
                       style={{ color: 'rgba(255,255,255,0.35)' }}
                     >
-                      Step {step.number}
+                      {feature.number}
                     </span>
                     <span
                       className="text-3xl leading-none transition-all duration-300"
                       style={{ 
-                        color: step.suitColor,
-                        transform: hoveredStep === step.number ? 'scale(1.15) rotate(8deg)' : 'scale(1)',
-                        filter: step.suitColor === '#E63946' && hoveredStep === step.number 
+                        color: feature.suitColor,
+                        transform: hoveredFeature === feature.number ? 'scale(1.15) rotate(8deg)' : 'scale(1)',
+                        filter: feature.suitColor === '#E63946' && hoveredFeature === feature.number 
                           ? 'drop-shadow(0 0 8px rgba(230, 57, 70, 0.5))' 
                           : 'none',
                       }}
                     >
-                      {step.suit}
+                      {feature.suit}
                     </span>
                   </div>
 
                   {/* Title */}
                   <h3 
-                    className="font-serif text-4xl font-normal leading-none mb-4"
+                    className="font-serif text-2xl font-normal leading-none mb-3"
                     style={{ color: 'rgba(255,255,255,0.95)' }}
                   >
-                    {step.title}
+                    {feature.title}
                   </h3>
 
                   {/* Description */}
                   <p 
-                    className="text-sm leading-relaxed mb-4"
-                    style={{ color: 'rgba(255,255,255,0.6)' }}
+                    className="text-sm leading-relaxed mb-5"
+                    style={{ color: 'rgba(255,255,255,0.5)' }}
                   >
-                    {step.description}
+                    {feature.description}
                   </p>
 
-                  {/* Detail */}
-                  <p 
-                    className="text-xs leading-relaxed mt-auto"
-                    style={{ color: 'rgba(255,255,255,0.4)' }}
-                  >
-                    {step.detail}
-                  </p>
+                  {/* Details list */}
+                  <ul className="space-y-2 mt-auto">
+                    {feature.details.map((detail, i) => (
+                      <li 
+                        key={i}
+                        className="flex items-center gap-2 text-xs"
+                        style={{ color: 'rgba(255,255,255,0.5)' }}
+                      >
+                        <span style={{ color: '#E63946', fontSize: 8 }}>♦</span>
+                        {detail}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             ))}
@@ -189,13 +243,13 @@ export default function HowItWorksPage() {
                 className="font-serif text-3xl font-normal mb-4 relative"
                 style={{ color: 'rgba(255,255,255,0.95)' }}
               >
-                Ready to Read the Cards?
+                Ready to Stack the Deck?
               </h3>
               <p 
                 className="text-sm mb-8 relative"
                 style={{ color: 'rgba(255,255,255,0.5)' }}
               >
-                Start with 3 free searches. No credit card required.
+                Start analyzing videos with 3 free searches today.
               </p>
               <a
                 href={`${APP_URL}/sign-up`}
