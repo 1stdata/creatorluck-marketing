@@ -26,6 +26,7 @@ export function Hero() {
     country: "Global (All)",
     searchOrder: "Relevance",
     videoHistory: "Recent (50 videos)",
+    videoType: "all" as "all" | "videos" | "shorts",
     minSubscribers: 10,
     minAvgViews: 5,
   });
@@ -71,7 +72,7 @@ export function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-24 pb-16 relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-16 relative overflow-hidden">
       {/* Spotlight effect behind card area */}
       <div 
         className="absolute pointer-events-none hidden lg:block"
@@ -85,10 +86,10 @@ export function Hero() {
         }}
       />
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
         {/* Left side - Content */}
         <div className="flex-1 max-w-[640px]">
-          <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.05] tracking-tight text-center lg:text-left mb-6 text-balance">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl font-normal leading-[1.05] tracking-tight text-center lg:text-left mb-3 sm:mb-6 text-balance">
             Read The{" "}
             <span 
               className="italic relative inline-block"
@@ -106,13 +107,13 @@ export function Hero() {
           </h1>
 
           <p 
-            className="text-xl text-center lg:text-left mb-3 max-w-md mx-auto lg:mx-0 leading-relaxed font-medium"
+            className="text-lg sm:text-xl text-center lg:text-left mb-2 max-w-md mx-auto lg:mx-0 leading-relaxed font-medium"
             style={{ color: 'rgba(255,255,255,0.8)' }}
           >
             Virality isn't random. Neither is your success.
           </p>
           <p 
-            className="text-base text-center lg:text-left mb-4 max-w-md mx-auto lg:mx-0 leading-relaxed"
+            className="text-sm sm:text-base text-center lg:text-left mb-3 sm:mb-4 max-w-md mx-auto lg:mx-0 leading-relaxed"
             style={{ color: 'rgba(255,255,255,0.5)' }}
           >
             Most creators are gambling. You're counting cards.
@@ -120,34 +121,36 @@ export function Hero() {
 
           {/* Proof element with pulsing red dot */}
           <div 
-            className="font-mono text-xs uppercase tracking-[0.2em] mb-10 text-center lg:text-left flex items-center gap-3 justify-center lg:justify-start"
+            className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] mb-5 sm:mb-8 text-center lg:text-left flex flex-col sm:flex-row items-center gap-2 sm:gap-3 justify-center lg:justify-start"
             style={{ color: 'rgba(255,255,255,0.6)' }}
           >
-            <span 
-              className="inline-block w-2 h-2 rounded-full animate-pulse"
-              style={{ 
-                backgroundColor: '#E63946',
-                boxShadow: '0 0 8px rgba(230, 57, 70, 0.6)',
-              }}
-            />
-            <span>2.3M+ videos analyzed</span>
-            <span style={{ opacity: 0.3 }}>•</span>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span 
+                className="inline-block w-2 h-2 rounded-full animate-pulse"
+                style={{ 
+                  backgroundColor: '#E63946',
+                  boxShadow: '0 0 8px rgba(230, 57, 70, 0.6)',
+                }}
+              />
+              <span>2.3M+ videos analyzed</span>
+            </div>
+            <span className="hidden sm:inline" style={{ opacity: 0.3 }}>•</span>
             <span>Used by 12,000+ creators</span>
           </div>
 
           {/* Search Wrapper */}
           <div className="w-full">
             {/* Tabs with suit icons */}
-            <div className="flex gap-2 mb-4 justify-center lg:justify-start relative">
+            <div className="flex gap-1.5 sm:gap-2 mb-3 sm:mb-4 justify-start lg:justify-start relative overflow-x-auto pb-1 -mx-1 px-1 scrollbar-hide">
               {[
-                { id: "topic" as const, icon: "♠", label: "By Topic" },
-                { id: "channel" as const, icon: "♥", label: "By Channel" },
-                { id: "video" as const, icon: "♦", label: "By Video" },
+                { id: "topic" as const, icon: "♠", label: "Topic", labelFull: "By Topic" },
+                { id: "channel" as const, icon: "♥", label: "Channel", labelFull: "By Channel" },
+                { id: "video" as const, icon: "♦", label: "Video", labelFull: "By Video" },
               ].map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className="px-5 py-2.5 text-sm font-medium rounded-full flex items-center gap-2 transition-all duration-200"
+                  className="px-4 sm:px-5 py-2.5 text-sm font-medium rounded-full flex items-center gap-1.5 sm:gap-2 transition-all duration-200 whitespace-nowrap flex-shrink-0"
                   style={
                     activeTab === tab.id
                       ? { 
@@ -184,58 +187,81 @@ export function Hero() {
                   >
                     {tab.icon}
                   </span>
-                  {tab.label}
+                  <span className="hidden sm:inline">{tab.labelFull}</span>
+                  <span className="sm:hidden">{tab.label}</span>
                 </button>
               ))}
             </div>
 
-            {/* Search Input */}
-            <div 
-              className="flex rounded-2xl overflow-hidden mb-4 transition-all duration-200"
-              style={{ 
-                backgroundColor: 'rgba(0,0,0,0.4)',
-                border: '1px solid rgba(255,255,255,0.08)',
-                backdropFilter: 'blur(10px)',
-              }}
-            >
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                placeholder={placeholders[activeTab]}
-                className="flex-1 px-6 py-4 text-base bg-transparent outline-none transition-opacity duration-200"
+            {/* Search Input - Highly Prominent */}
+            <div className="relative mb-4">
+              {/* Outer glow effect */}
+              <div 
+                className="absolute -inset-1 rounded-2xl opacity-60 blur-md"
                 style={{ 
-                  color: '#fafafa',
-                  opacity: placeholderVisible ? 1 : 0.5,
+                  background: 'linear-gradient(135deg, rgba(230, 57, 70, 0.4), rgba(230, 57, 70, 0.1))',
                 }}
               />
-              {/* Deal Me In button with shine animation */}
-              <button
-                onClick={handleSearch}
-                className="relative px-8 py-4 text-sm font-semibold transition-all duration-200 whitespace-nowrap hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"
+              {/* Search container */}
+              <div 
+                className="relative flex rounded-2xl overflow-hidden transition-all duration-200"
                 style={{ 
-                  background: 'linear-gradient(135deg, #E63946, #B91C2C)',
-                  color: '#ffffff',
-                  boxShadow: '0 4px 15px rgba(230, 57, 70, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
+                  backgroundColor: 'rgba(10,10,10,0.95)',
+                  border: '2px solid rgba(230, 57, 70, 0.3)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.05)',
                 }}
               >
-                <span className="relative z-10">Deal Me In</span>
-                {/* Shine effect */}
-                <span 
-                  className="absolute top-0 left-0 w-full h-full pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-                    animation: 'shine 5s infinite',
+                {/* Search icon */}
+                <div 
+                  className="flex items-center pl-4 sm:pl-5"
+                  style={{ color: 'rgba(230, 57, 70, 0.6)' }}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                  placeholder={placeholders[activeTab]}
+                  className="flex-1 px-4 py-4 sm:py-5 text-base sm:text-lg bg-transparent outline-none transition-opacity duration-200 placeholder:text-white/30"
+                  style={{ 
+                    color: '#fafafa',
+                    opacity: placeholderVisible ? 1 : 0.5,
                   }}
                 />
-              </button>
+                {/* Deal Me In button with shine animation */}
+                <button
+                  onClick={handleSearch}
+                  className="relative px-5 sm:px-8 py-4 sm:py-5 text-sm sm:text-base font-semibold transition-all duration-200 whitespace-nowrap hover:-translate-y-0.5 active:translate-y-0 overflow-hidden m-1.5"
+                  style={{ 
+                    background: 'linear-gradient(135deg, #E63946, #B91C2C)',
+                    color: '#ffffff',
+                    boxShadow: '0 4px 20px rgba(230, 57, 70, 0.5), inset 0 1px 0 rgba(255,255,255,0.15)',
+                    borderRadius: '12px',
+                  }}
+                >
+                  <span className="relative z-10 hidden sm:inline">Deal Me In</span>
+                  <span className="relative z-10 sm:hidden">Search</span>
+                  {/* Shine effect */}
+                  <span 
+                    className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                    style={{
+                      background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                      animation: 'shine 5s infinite',
+                    }}
+                  />
+                </button>
+              </div>
             </div>
 
             {/* Filters Toggle */}
             <button
               onClick={() => setFiltersOpen(!filtersOpen)}
-              className="flex items-center justify-center lg:justify-start gap-2 px-3 py-2 text-sm font-medium transition-all duration-200 mx-auto lg:mx-0 mb-4 rounded-lg hover:bg-white/5"
+              className="flex items-center justify-center lg:justify-start gap-2 px-3 py-1.5 text-sm font-medium transition-all duration-200 mx-auto lg:mx-0 mb-3 sm:mb-4 rounded-lg hover:bg-white/5"
               style={{ color: 'rgba(255,255,255,0.4)' }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -254,7 +280,7 @@ export function Hero() {
             {/* Filters Panel with poker table feel */}
             {filtersOpen && (
               <div 
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 rounded-2xl p-6 mb-4"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 rounded-2xl p-4 sm:p-6 mb-3 sm:mb-4"
                 style={{
                   background: 'linear-gradient(180deg, #1A1517 0%, #141214 100%)',
                   border: '1px solid rgba(255,255,255,0.05)',
@@ -324,6 +350,44 @@ export function Hero() {
                     className="text-[10px] font-medium uppercase tracking-[0.15em]"
                     style={{ color: 'rgba(255,255,255,0.5)' }}
                   >
+                    Video Type
+                  </span>
+                  <div 
+                    className="flex rounded-lg overflow-hidden"
+                    style={{ backgroundColor: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)' }}
+                  >
+                    {[
+                      { id: "all" as const, label: "All" },
+                      { id: "videos" as const, label: "Videos" },
+                      { id: "shorts" as const, label: "Shorts" },
+                    ].map((type) => (
+                      <button
+                        key={type.id}
+                        onClick={() => setFilters({ ...filters, videoType: type.id })}
+                        className="flex-1 px-3 py-2.5 text-xs font-medium transition-all duration-200"
+                        style={
+                          filters.videoType === type.id
+                            ? { 
+                                background: 'linear-gradient(135deg, #E63946, #C1121F)',
+                                color: '#ffffff',
+                              }
+                            : { 
+                                backgroundColor: 'transparent',
+                                color: 'rgba(255,255,255,0.5)',
+                              }
+                        }
+                      >
+                        {type.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <span 
+                    className="text-[10px] font-medium uppercase tracking-[0.15em]"
+                    style={{ color: 'rgba(255,255,255,0.5)' }}
+                  >
                     Min Subscribers
                   </span>
                   <div 
@@ -382,7 +446,7 @@ export function Hero() {
             )}
 
             {/* Note */}
-            <p className="text-sm text-center lg:text-left" style={{ color: 'rgba(255,255,255,0.5)' }}>
+            <p className="text-xs sm:text-sm text-center lg:text-left" style={{ color: 'rgba(255,255,255,0.5)' }}>
               <span className="font-semibold" style={{ color: '#E63946' }}>3 free searches</span>{" "}
               <span style={{ opacity: 0.4 }}>·</span> No credit card required
             </p>
