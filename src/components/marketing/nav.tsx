@@ -113,46 +113,45 @@ export function Nav() {
             style={{ background: 'rgba(255,255,255,0.1)' }}
           />
 
-          <SignedOut>
-            <div className="flex items-center gap-3">
-              <a 
-                href={`${APP_URL}/sign-in`} 
-                className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
-                style={{ color: 'rgba(255,255,255,0.6)' }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'rgba(255,255,255,0.9)';
-                  e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+          {/* CTA Buttons - Always visible */}
+          <div className="flex items-center gap-3">
+            <a 
+              href={`${APP_URL}/sign-in`} 
+              className="hidden sm:block px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
+              style={{ color: 'rgba(255,255,255,0.6)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = 'rgba(255,255,255,0.9)';
+                e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'rgba(255,255,255,0.6)';
+                e.currentTarget.style.backgroundColor = 'transparent';
+              }}
+            >
+              Sign In
+            </a>
+            <a 
+              href={`${APP_URL}/sign-up`} 
+              className="relative px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-200 hover:scale-[0.98] overflow-hidden"
+              style={{ 
+                background: 'linear-gradient(135deg, #E63946 0%, #c1121f 100%)', 
+                color: '#ffffff',
+                boxShadow: '0 4px 16px rgba(230, 57, 70, 0.35), inset 0 1px 0 rgba(255,255,255,0.15)',
+              }}
+            >
+              {/* Shine effect */}
+              <span 
+                className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%)',
                 }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'rgba(255,255,255,0.6)';
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                }}
-              >
-                Sign In
-              </a>
-              <a 
-                href={`${APP_URL}/sign-up`} 
-                className="relative px-6 py-2.5 text-sm font-semibold rounded-lg transition-all duration-200 hover:scale-[0.98] overflow-hidden"
-                style={{ 
-                  background: 'linear-gradient(135deg, #E63946 0%, #c1121f 100%)', 
-                  color: '#ffffff',
-                  boxShadow: '0 4px 16px rgba(230, 57, 70, 0.35), inset 0 1px 0 rgba(255,255,255,0.15)',
-                }}
-              >
-                {/* Shine effect */}
-                <span 
-                  className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%)',
-                  }}
-                />
-                <span className="relative flex items-center gap-2">
-                  <span style={{ fontSize: 12 }}>♠</span>
-                  Get Started Free
-                </span>
-              </a>
-            </div>
-          </SignedOut>
+              />
+              <span className="relative flex items-center gap-2">
+                <span style={{ fontSize: 12 }}>♠</span>
+                Get Started Free
+              </span>
+            </a>
+          </div>
 
           <SignedIn>
             <div className="flex items-center gap-4">
