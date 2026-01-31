@@ -26,6 +26,7 @@ export function Hero() {
     country: "Global (All)",
     searchOrder: "Relevance",
     videoHistory: "Recent (50 videos)",
+    videoType: "all" as "all" | "videos" | "shorts",
     minSubscribers: 10,
     minAvgViews: 5,
   });
@@ -321,6 +322,44 @@ export function Hero() {
                     <option>Last 90 days</option>
                     <option>All time</option>
                   </select>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <span 
+                    className="text-[10px] font-medium uppercase tracking-[0.15em]"
+                    style={{ color: 'rgba(255,255,255,0.5)' }}
+                  >
+                    Video Type
+                  </span>
+                  <div 
+                    className="flex rounded-lg overflow-hidden"
+                    style={{ backgroundColor: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)' }}
+                  >
+                    {[
+                      { id: "all" as const, label: "All" },
+                      { id: "videos" as const, label: "Videos" },
+                      { id: "shorts" as const, label: "Shorts" },
+                    ].map((type) => (
+                      <button
+                        key={type.id}
+                        onClick={() => setFilters({ ...filters, videoType: type.id })}
+                        className="flex-1 px-3 py-2.5 text-xs font-medium transition-all duration-200"
+                        style={
+                          filters.videoType === type.id
+                            ? { 
+                                background: 'linear-gradient(135deg, #E63946, #C1121F)',
+                                color: '#ffffff',
+                              }
+                            : { 
+                                backgroundColor: 'transparent',
+                                color: 'rgba(255,255,255,0.5)',
+                              }
+                        }
+                      >
+                        {type.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-2">
