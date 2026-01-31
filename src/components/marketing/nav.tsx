@@ -36,7 +36,7 @@ export function Nav() {
 
   return (
     <nav 
-      className="fixed top-0 left-0 right-0 z-50 h-18"
+      className="fixed top-0 left-0 right-0 z-50 h-14 sm:h-16"
       style={{ 
         backdropFilter: 'blur(24px)', 
         backgroundColor: 'rgba(13, 13, 13, 0.9)', 
