@@ -45,10 +45,11 @@ export function Nav() {
           <Image 
             src="/creatorluck-logo.svg" 
             alt="CreatorLuck" 
-            width={180} 
-            height={47} 
-            className="h-8 sm:h-10 w-auto"
+            width={192} 
+            height={50} 
+            className="h-7 sm:h-8 w-auto"
             priority
+            unoptimized
           />
         </Link>
 
