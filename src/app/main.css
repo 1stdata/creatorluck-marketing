@@ -1,32 +1,111 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
 
 /* CreatorLuck Design System v2 */
-@layer base {
-  html {
-    background-color: #0D0D0D;
-    color: rgba(255, 255, 255, 0.9);
-  }
-  body {
-    background-color: #0D0D0D;
-    color: rgba(255, 255, 255, 0.9);
-  }
-}
 
 :root {
-  --background: #0D0D0D;
-  --foreground: rgba(255, 255, 255, 0.9);
-  --card: #1A1517;
-  --card-foreground: rgba(255, 255, 255, 0.9);
-  --muted: #1a1a1a;
-  --muted-foreground: rgba(255, 255, 255, 0.6);
-  --border: #262626;
-  --accent: #E63946;
-  --accent-secondary: #c1121f;
-  --accent-gold: #D4AF37;
-  --accent-foreground: #ffffff;
+  --background: hsl(0 0% 5%);
+  --foreground: hsl(0 0% 100% / 0.9);
+  --card: hsl(350 10% 9%);
+  --card-foreground: hsl(0 0% 100% / 0.9);
+  --popover: hsl(350 10% 9%);
+  --popover-foreground: hsl(0 0% 100% / 0.9);
+  --primary: hsl(355 77% 55%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(0 0% 10%);
+  --secondary-foreground: hsl(0 0% 100% / 0.9);
+  --muted: hsl(0 0% 10%);
+  --muted-foreground: hsl(0 0% 100% / 0.6);
+  --accent: hsl(355 77% 55%);
+  --accent-secondary: hsl(355 85% 41%);
+  --accent-gold: hsl(43 73% 52%);
+  --accent-foreground: hsl(0 0% 100%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(0 0% 15%);
+  --input: hsl(0 0% 15%);
+  --ring: hsl(355 77% 55%);
   --radius: 0.75rem;
+  --chart-1: hsl(355 77% 55%);
+  --chart-2: hsl(43 73% 52%);
+  --chart-3: hsl(200 70% 50%);
+  --chart-4: hsl(150 60% 45%);
+  --chart-5: hsl(280 60% 55%);
+}
+
+.dark {
+  --background: hsl(0 0% 5%);
+  --foreground: hsl(0 0% 100% / 0.9);
+  --card: hsl(350 10% 9%);
+  --card-foreground: hsl(0 0% 100% / 0.9);
+  --popover: hsl(350 10% 9%);
+  --popover-foreground: hsl(0 0% 100% / 0.9);
+  --primary: hsl(355 77% 55%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(0 0% 10%);
+  --secondary-foreground: hsl(0 0% 100% / 0.9);
+  --muted: hsl(0 0% 10%);
+  --muted-foreground: hsl(0 0% 100% / 0.6);
+  --accent: hsl(355 77% 55%);
+  --accent-secondary: hsl(355 85% 41%);
+  --accent-gold: hsl(43 73% 52%);
+  --accent-foreground: hsl(0 0% 100%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(0 0% 15%);
+  --input: hsl(0 0% 15%);
+  --ring: hsl(355 77% 55%);
+  --chart-1: hsl(355 77% 55%);
+  --chart-2: hsl(43 73% 52%);
+  --chart-3: hsl(200 70% 50%);
+  --chart-4: hsl(150 60% 45%);
+  --chart-5: hsl(280 60% 55%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-gold: var(--accent-gold);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+  --font-mono: var(--font-space), monospace;
+}
+
+html {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 ::selection {
@@ -69,27 +148,27 @@ input[type="range"]::-webkit-slider-thumb {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #E63946;
+  background: var(--accent);
   cursor: pointer;
-  border: 2px dashed rgba(255,255,255,0.3);
-  box-shadow: 0 2px 6px rgba(230, 57, 70, 0.4);
+  border: 2px dashed hsl(0 0% 100% / 0.3);
+  box-shadow: 0 2px 6px hsl(355 77% 55% / 0.4);
 }
 
 input[type="range"]::-moz-range-thumb {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #E63946;
+  background: var(--accent);
   cursor: pointer;
-  border: 2px dashed rgba(255,255,255,0.3);
-  box-shadow: 0 2px 6px rgba(230, 57, 70, 0.4);
+  border: 2px dashed hsl(0 0% 100% / 0.3);
+  box-shadow: 0 2px 6px hsl(355 77% 55% / 0.4);
 }
 
 /* Focus states */
 input:focus-visible,
 select:focus-visible,
 button:focus-visible {
-  outline: 2px solid rgba(230, 57, 70, 0.5);
+  outline: 2px solid hsl(355 77% 55% / 0.5);
   outline-offset: 2px;
 }
 
@@ -186,13 +265,13 @@ button:focus-visible {
   }
 
   .card-modern:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-    border-color: rgba(161, 161, 161, 0.3);
+    box-shadow: 0 10px 15px -3px hsl(0 0% 0% / 0.2);
+    border-color: hsl(0 0% 63% / 0.3);
   }
 
   .glass {
     backdrop-filter: blur(24px);
-    background-color: rgba(10, 10, 10, 0.8);
+    background-color: hsl(0 0% 4% / 0.8);
     border: 1px solid var(--border);
   }
 }
