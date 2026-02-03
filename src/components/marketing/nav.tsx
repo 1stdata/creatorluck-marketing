@@ -44,7 +44,7 @@ export function Nav() {
           <img 
             src="/creatorluck-logo.svg" 
             alt="CreatorLuck" 
-            style={{ height: '32px', width: 'auto' }}
+            style={{ height: '32px', width: '170px' }}
           />
         </Link>
 
