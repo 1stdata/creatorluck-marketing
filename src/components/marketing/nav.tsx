@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.creatorluck.io";
@@ -42,14 +41,10 @@ export function Nav() {
 
       <div className="flex justify-between items-center h-full w-full max-w-7xl mx-auto px-6 lg:px-12 relative">
         <Link href="/" className="flex items-center group">
-          <Image 
+          <img 
             src="/creatorluck-logo.svg" 
             alt="CreatorLuck" 
-            width={192} 
-            height={50} 
-            className="h-7 sm:h-8 w-auto"
-            priority
-            unoptimized
+            className="h-7 sm:h-8"
           />
         </Link>
 

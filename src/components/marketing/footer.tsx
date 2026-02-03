@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 
 export function Footer() {
   return (
@@ -84,13 +83,10 @@ export function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-4">
             <Link href="/" className="inline-block mb-4">
-              <Image 
+              <img 
                 src="/creatorluck-logo.svg" 
                 alt="CreatorLuck" 
-                width={192} 
-                height={50} 
-                className="h-8 w-auto"
-                unoptimized
+                className="h-8"
               />
             </Link>
             <p 
