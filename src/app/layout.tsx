@@ -36,7 +36,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    // TODO: Re-enable ClerkProvider after Design Mode changes
+    // <ClerkProvider>
       <html
         lang="en"
         className={`${jakarta.variable} ${spaceMono.variable} ${instrumentSerif.variable}`}
@@ -45,6 +46,6 @@ export default function RootLayout({
           {children}
         </body>
       </html>
-    </ClerkProvider>
+    // </ClerkProvider>
   );
 }
