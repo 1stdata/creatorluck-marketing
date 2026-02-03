@@ -86,7 +86,7 @@ export function Footer() {
               <img 
                 src="/creatorluck-logo.svg" 
                 alt="CreatorLuck" 
-                className="h-8"
+                style={{ height: '32px', width: 'auto' }}
               />
             </Link>
             <p 
