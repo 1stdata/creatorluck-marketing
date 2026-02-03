@@ -2,34 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.creatorluck.io";
-
-function CardSuitsLogo() {
-  return (
-    <div className="relative flex items-center justify-center">
-      {/* Glow behind the suit */}
-      <div 
-        className="absolute w-8 h-8 rounded-full"
-        style={{ 
-          background: 'radial-gradient(circle, rgba(230, 57, 70, 0.3) 0%, transparent 70%)',
-          filter: 'blur(4px)',
-        }}
-      />
-      {/* Main suit icon */}
-      <span 
-        className="text-2xl font-serif relative z-10" 
-        style={{ 
-          color: '#E63946', 
-          textShadow: '0 2px 12px rgba(230, 57, 70, 0.5)',
-        }}
-      >
-        ♠
-      </span>
-    </div>
-  );
-}
 
 export function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -65,14 +41,15 @@ export function Nav() {
       />
 
       <div className="flex justify-between items-center h-full w-full max-w-7xl mx-auto px-6 lg:px-12 relative">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <CardSuitsLogo />
-          <span 
-            className="text-xl font-bold tracking-tight"
-            style={{ color: 'rgba(255,255,255,0.95)' }}
-          >
-            Creator<span style={{ color: '#E63946' }}>Luck</span>
-          </span>
+        <Link href="/" className="flex items-center group">
+          <Image 
+            src="/creatorluck-logo.svg" 
+            alt="CreatorLuck" 
+            width={180} 
+            height={47} 
+            className="h-8 sm:h-10 w-auto"
+            priority
+          />
         </Link>
 
         <div className="flex items-center gap-4 sm:gap-8">
