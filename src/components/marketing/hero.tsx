@@ -89,7 +89,7 @@ export function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
         {/* Left side - Content */}
         <div className="flex-1 max-w-[640px]">
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl font-normal leading-[1.05] tracking-tight text-center lg:text-left mb-3 sm:mb-6 text-balance">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl font-normal leading-[1.05] tracking-tight text-center lg:text-left mb-3 sm:mb-6 text-balance text-secondary">
             Read The{" "}
             <span 
               className="italic relative inline-block"
