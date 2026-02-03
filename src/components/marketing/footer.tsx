@@ -86,7 +86,8 @@ export function Footer() {
               <img 
                 src="/creatorluck-logo.svg" 
                 alt="CreatorLuck" 
-                className="h-8"
+                className="h-8 w-auto"
+                style={{ minWidth: '120px' }}
               />
             </Link>
             <p 

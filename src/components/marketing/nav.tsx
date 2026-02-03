@@ -40,11 +40,12 @@ export function Nav() {
       />
 
       <div className="flex justify-between items-center h-full w-full max-w-7xl mx-auto px-6 lg:px-12 relative">
-        <Link href="/" className="flex items-center group">
+        <Link href="/" className="flex items-center group shrink-0">
           <img 
             src="/creatorluck-logo.svg" 
             alt="CreatorLuck" 
-            className="h-7 sm:h-8"
+            className="h-7 sm:h-8 w-auto"
+            style={{ minWidth: '120px' }}
           />
         </Link>
 
