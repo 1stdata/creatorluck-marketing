@@ -57,7 +57,7 @@ export function WhySection() {
             className="text-xl lg:text-2xl leading-relaxed mb-6"
             style={{ color: 'rgba(255,255,255,0.7)' }}
           >
-            Other tools show you <span style={{ color: 'rgba(255,255,255,0.4)' }}>what</span> went viral.
+            Other tools show you <span className="text-chart-1" style={{ color: 'rgba(255,255,255,0.4)' }}>what</span> went viral.
           </p>
           
           <p 
