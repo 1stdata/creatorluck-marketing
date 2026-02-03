@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-// TODO: Re-enable after Design Mode changes
-// import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.creatorluck.io";
 
@@ -150,7 +149,6 @@ export function Nav() {
             </a>
           </div>
 
-          {/* TODO: Re-enable after Design Mode changes
           <SignedIn>
             <div className="flex items-center gap-4">
               <a
@@ -185,7 +183,6 @@ export function Nav() {
               </div>
             </div>
           </SignedIn>
-          */}
         </div>
       </div>
 

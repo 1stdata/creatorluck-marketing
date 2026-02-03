@@ -1,7 +1,6 @@
 "use client";
 
-// TODO: Re-enable after Design Mode changes
-// import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.creatorluck.io";
 
@@ -86,7 +85,7 @@ export function CtaSection() {
               The algorithm isn&apos;t random. Learn to read it with data-driven insights that actually work.
             </p>
 
-            {/* TODO: Re-enable after Design Mode changes */}
+            <SignedOut>
               <a 
                 href={`${APP_URL}/sign-up`} 
                 className="relative px-8 py-4 font-semibold rounded-xl transition-all duration-200 hover:scale-[1.02] inline-block overflow-hidden group"
@@ -108,6 +107,21 @@ export function CtaSection() {
                   Deal Me In
                 </span>
               </a>
+            </SignedOut>
+
+            <SignedIn>
+              <a 
+                href={`${APP_URL}/dashboard`} 
+                className="px-8 py-4 font-semibold rounded-xl transition-all duration-200 hover:scale-[1.02] inline-block"
+                style={{
+                  backgroundColor: '#0D0D0D',
+                  color: '#ffffff',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+                }}
+              >
+                Go to Dashboard
+              </a>
+            </SignedIn>
 
             {/* Floating suit */}
             <span 

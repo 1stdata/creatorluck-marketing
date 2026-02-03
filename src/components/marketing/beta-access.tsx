@@ -1,7 +1,6 @@
 "use client";
 
-// TODO: Re-enable after Design Mode changes
-// import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.creatorluck.io";
 
@@ -72,7 +71,7 @@ export function BetaAccess() {
               </span>
             </p>
 
-            {/* TODO: Re-enable after Design Mode changes */}
+            <SignedOut>
               <a 
                 href={`${APP_URL}/sign-up`} 
                 className="inline-flex items-center gap-3 px-10 py-5 font-semibold text-lg rounded-xl transition-all duration-200 hover:scale-[1.02]"
@@ -85,6 +84,21 @@ export function BetaAccess() {
                 <span style={{ color: '#E63946' }}>♠</span>
                 Start Winning the Algorithm
               </a>
+            </SignedOut>
+
+            <SignedIn>
+              <a 
+                href={`${APP_URL}/dashboard`} 
+                className="inline-flex items-center gap-3 px-10 py-5 font-semibold text-lg rounded-xl transition-all duration-200 hover:scale-[1.02]"
+                style={{
+                  backgroundColor: '#0D0D0D',
+                  color: '#ffffff',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.4)',
+                }}
+              >
+                Go to Dashboard
+              </a>
+            </SignedIn>
 
             <p 
               className="mt-6 text-sm"

@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-// TODO: Re-enable after Design Mode changes
-// import { useAuth } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 import { SearchTeaser } from "./search-teaser";
 import { PreviewCard } from "./preview-card";
 
@@ -37,9 +36,7 @@ export function Hero() {
   const [teaserQuery, setTeaserQuery] = useState("");
   const [teaserType, setTeaserType] = useState<string>("topic");
 
-  // TODO: Re-enable after Design Mode changes
-  // const { isSignedIn } = useAuth();
-  const isSignedIn = false;
+  const { isSignedIn } = useAuth();
 
   // Animated placeholder cycling with fade
   useEffect(() => {
