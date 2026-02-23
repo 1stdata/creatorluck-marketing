@@ -9,20 +9,20 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.creatorluck.io";
 
 const plans = [
   {
-    id: "free",
+    id: "trial",
     suit: "♣",
     suitColor: "#fafafa",
-    name: "Free",
+    name: "3-Day Trial",
     price: "$0",
-    period: "/forever",
-    description: "Perfect for trying out CreatorLuck",
+    period: "",
+    description: "No credit card required",
     features: [
-      "3 searches per day",
-      "Basic video analysis",
-      "Hook score insights",
-      "7-day search history",
+      "2 projects",
+      "30 chat messages",
+      "Unlimited scripts & ideation",
+      "Full AI analysis",
     ],
-    cta: "Get Started",
+    cta: "Start Free Trial",
     highlighted: false,
   },
   {
@@ -30,38 +30,35 @@ const plans = [
     suit: "♥",
     suitColor: "#E63946",
     name: "Pro",
-    price: "$29",
+    price: "$49",
     period: "/month",
-    description: "For serious content creators",
+    description: "or $39/mo billed annually",
     features: [
-      "Unlimited searches",
-      "Deep video analysis",
-      "Retention patterns",
-      "CTR optimization tips",
-      "30-day search history",
+      "25 projects",
+      "100 chat messages/mo",
+      "Unlimited scripts & ideation",
+      "Full AI analysis",
       "Priority support",
     ],
     cta: "Start Free Trial",
     highlighted: true,
   },
   {
-    id: "agency",
+    id: "team",
     suit: "♦",
     suitColor: "#E63946",
-    name: "Agency",
-    price: "$99",
+    name: "Team",
+    price: "$149",
     period: "/month",
-    description: "For teams and agencies",
+    description: "or $99/mo billed annually",
     features: [
       "Everything in Pro",
-      "5 team members",
-      "API access",
-      "Bulk analysis",
-      "Custom reports",
-      "Dedicated support",
-      "White-label options",
+      "Unlimited projects",
+      "1,000 chat messages/mo",
+      "MCP access",
+      "5 team seats",
     ],
-    cta: "Contact Us",
+    cta: "Start Free Trial",
     highlighted: false,
   },
 ];
@@ -77,20 +74,20 @@ export default function PricingPage() {
         <main className="min-h-screen pt-32 pb-24 px-6 lg:px-12">
           {/* Hero section */}
           <div className="max-w-4xl mx-auto text-center mb-20">
-            <span 
+            <span
               className="font-mono text-[10px] uppercase tracking-[0.25em] mb-4 block"
               style={{ color: 'rgba(255,255,255,0.4)' }}
             >
               Simple Pricing
             </span>
-            <h1 
+            <h1
               className="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.05] tracking-tight mb-6 text-balance"
               style={{ color: 'rgba(255,255,255,0.95)' }}
             >
               Pick Your{" "}
-              <span 
+              <span
                 className="italic"
-                style={{ 
+                style={{
                   color: '#E63946',
                   textShadow: '0 2px 30px rgba(230, 57, 70, 0.4)',
                 }}
@@ -98,7 +95,7 @@ export default function PricingPage() {
                 Hand
               </span>
             </h1>
-            <p 
+            <p
               className="text-lg max-w-xl mx-auto leading-relaxed"
               style={{ color: 'rgba(255,255,255,0.6)' }}
             >
@@ -120,7 +117,7 @@ export default function PricingPage() {
                 }}
               >
                 {/* Card glow on hover / highlighted */}
-                <div 
+                <div
                   className="absolute -inset-3 rounded-3xl pointer-events-none transition-opacity duration-300"
                   style={{
                     background: 'radial-gradient(ellipse at center, rgba(230, 57, 70, 0.15) 0%, transparent 70%)',
@@ -128,17 +125,17 @@ export default function PricingPage() {
                     filter: 'blur(15px)',
                   }}
                 />
-                
+
                 <div
                   className="relative rounded-2xl p-8 flex flex-col h-full overflow-hidden"
                   style={{
-                    background: plan.highlighted 
+                    background: plan.highlighted
                       ? 'linear-gradient(180deg, #1A1517 0%, #0D0D0D 100%)'
                       : 'linear-gradient(180deg, #1A1517 0%, #141414 100%)',
-                    border: plan.highlighted 
+                    border: plan.highlighted
                       ? '1px solid rgba(230, 57, 70, 0.5)'
-                      : hoveredPlan === plan.id 
-                        ? '1px solid rgba(230, 57, 70, 0.4)' 
+                      : hoveredPlan === plan.id
+                        ? '1px solid rgba(230, 57, 70, 0.4)'
                         : '1px solid rgba(255,255,255,0.06)',
                     boxShadow: plan.highlighted
                       ? '0 20px 40px rgba(0,0,0,0.5), 0 0 60px rgba(230, 57, 70, 0.15)'
@@ -150,7 +147,7 @@ export default function PricingPage() {
                 >
                   {/* Popular badge */}
                   {plan.highlighted && (
-                    <div 
+                    <div
                       className="absolute top-4 right-4 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider"
                       style={{
                         background: 'linear-gradient(135deg, #E63946, #B91C2C)',
@@ -162,7 +159,7 @@ export default function PricingPage() {
                   )}
 
                   {/* Noise texture */}
-                  <div 
+                  <div
                     className="absolute inset-0 pointer-events-none opacity-[0.03]"
                     style={{
                       backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
@@ -171,7 +168,7 @@ export default function PricingPage() {
 
                   {/* Card header */}
                   <div className="flex justify-between items-start mb-4">
-                    <span 
+                    <span
                       className="font-mono text-[10px] uppercase tracking-[0.2em]"
                       style={{ color: 'rgba(255,255,255,0.35)' }}
                     >
@@ -179,11 +176,11 @@ export default function PricingPage() {
                     </span>
                     <span
                       className="text-2xl leading-none transition-all duration-300"
-                      style={{ 
+                      style={{
                         color: plan.suitColor,
                         transform: hoveredPlan === plan.id ? 'scale(1.15) rotate(8deg)' : 'scale(1)',
-                        filter: plan.suitColor === '#E63946' && hoveredPlan === plan.id 
-                          ? 'drop-shadow(0 0 8px rgba(230, 57, 70, 0.5))' 
+                        filter: plan.suitColor === '#E63946' && hoveredPlan === plan.id
+                          ? 'drop-shadow(0 0 8px rgba(230, 57, 70, 0.5))'
                           : 'none',
                       }}
                     >
@@ -193,22 +190,24 @@ export default function PricingPage() {
 
                   {/* Price */}
                   <div className="mb-2">
-                    <span 
+                    <span
                       className="font-serif text-5xl font-normal"
                       style={{ color: 'rgba(255,255,255,0.95)' }}
                     >
                       {plan.price}
                     </span>
-                    <span 
-                      className="text-sm ml-1"
-                      style={{ color: 'rgba(255,255,255,0.4)' }}
-                    >
-                      {plan.period}
-                    </span>
+                    {plan.period && (
+                      <span
+                        className="text-sm ml-1"
+                        style={{ color: 'rgba(255,255,255,0.4)' }}
+                      >
+                        {plan.period}
+                      </span>
+                    )}
                   </div>
 
                   {/* Description */}
-                  <p 
+                  <p
                     className="text-sm mb-6"
                     style={{ color: 'rgba(255,255,255,0.5)' }}
                   >
@@ -218,7 +217,7 @@ export default function PricingPage() {
                   {/* Features */}
                   <ul className="space-y-3 mb-8 flex-1">
                     {plan.features.map((feature, i) => (
-                      <li 
+                      <li
                         key={i}
                         className="flex items-center gap-3 text-sm"
                         style={{ color: 'rgba(255,255,255,0.7)' }}
@@ -233,7 +232,7 @@ export default function PricingPage() {
                   <a
                     href={`${APP_URL}/sign-up`}
                     className="w-full text-center py-3 px-6 rounded-xl text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5"
-                    style={plan.highlighted ? { 
+                    style={plan.highlighted ? {
                       background: 'linear-gradient(135deg, #E63946, #B91C2C)',
                       color: '#ffffff',
                       boxShadow: '0 4px 20px rgba(230, 57, 70, 0.4)',
@@ -252,13 +251,13 @@ export default function PricingPage() {
 
           {/* FAQ teaser */}
           <div className="max-w-2xl mx-auto text-center">
-            <p 
+            <p
               className="text-sm"
               style={{ color: 'rgba(255,255,255,0.5)' }}
             >
               Have questions? Contact us at{" "}
-              <a 
-                href="mailto:support@creatorluck.io" 
+              <a
+                href="mailto:support@creatorluck.io"
                 className="transition-colors"
                 style={{ color: '#E63946' }}
               >
