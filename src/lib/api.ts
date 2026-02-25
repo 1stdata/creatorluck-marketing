@@ -1,6 +1,6 @@
 const BACKEND_URL =
   process.env.NEXT_PUBLIC_BACKEND_URL ||
-  "https://viralprocess-ai-builder-production.up.railway.app";
+  "https://a.creatorluck.io";
 
 export interface SearchPreviewResult {
   count: number;
