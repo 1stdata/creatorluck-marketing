@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -82,22 +83,8 @@ export function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
           {/* Brand column */}
           <div className="lg:col-span-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div 
-                className="w-10 h-10 rounded-xl flex items-center justify-center"
-                style={{ 
-                  background: 'linear-gradient(145deg, rgba(230, 57, 70, 0.2) 0%, rgba(230, 57, 70, 0.05) 100%)', 
-                  border: '1px solid rgba(230, 57, 70, 0.25)',
-                }}
-              >
-                <span style={{ color: '#E63946', fontSize: 18 }}>♠</span>
-              </div>
-              <span 
-                className="text-xl font-bold tracking-tight"
-                style={{ color: 'rgba(255,255,255,0.95)' }}
-              >
-                Creator<span style={{ color: '#E63946' }}>Luck</span>
-              </span>
+            <div className="mb-4">
+              <Image src="/logo.svg" alt="CreatorLuck" width={150} height={30} />
             </div>
             <p 
               className="text-sm leading-relaxed mb-6 max-w-xs"

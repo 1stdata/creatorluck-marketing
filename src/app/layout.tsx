@@ -28,6 +28,9 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "CreatorLuck — Read The Cards",
   description: "Stop guessing. Discover what makes videos go viral.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
