@@ -17,18 +17,21 @@ const tierBorder = { viral: "rgba(34,197,94,0.3)", mid: "rgba(59,130,246,0.3)", 
 const cardBg = "linear-gradient(180deg, #1A1517 0%, #111 100%)";
 const cardBorder = "1px solid rgba(255,255,255,0.08)";
 
+const ytThumb = (id: string) => `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
+const ytFrame = (id: string, n: number) => `https://i.ytimg.com/vi/${id}/${n}.jpg`;
+
 // ── 1. Channel Stats (Larger) ─────────────────────────────────────
 
 function StatsVisual() {
   const videos = [
-    { title: "$1 vs $100,000,000 Car!", views: "278M", vpd: "1.2M", eng: "4.8%", tier: "viral" as const, status: "Ready" },
-    { title: "I Survived 7 Days In An Abandoned City", views: "189M", vpd: "890K", eng: "5.1%", tier: "viral" as const, status: "Ready" },
-    { title: "World's Most Dangerous Trap!", views: "142M", vpd: "720K", eng: "4.2%", tier: "viral" as const, status: "Ready" },
-    { title: "I Built 100 Houses And Gave Them Away", views: "95M", vpd: "310K", eng: "3.1%", tier: "mid" as const, status: "Ready" },
-    { title: "Survive 100 Days, Win $500,000", views: "67M", vpd: "180K", eng: "2.8%", tier: "mid" as const, status: "Ready" },
-    { title: "Every Country On Earth Fights For $250,000", views: "54M", vpd: "120K", eng: "2.4%", tier: "mid" as const, status: "Processing" },
-    { title: "I Opened A Free Restaurant", views: "23M", vpd: "45K", eng: "1.9%", tier: "bombed" as const, status: "Ready" },
-    { title: "Last To Leave Circle Wins $500,000", views: "18M", vpd: "32K", eng: "1.5%", tier: "bombed" as const, status: "Ready" },
+    { id: "0e3GPea1Tyg", title: "$456,000 Squid Game In Real Life!", views: "885M", vpd: "1.8M", eng: "5.2%", tier: "viral" as const, status: "Ready" },
+    { id: "KrLj6nc516A", title: "$1 vs $1,000,000,000 Car!", views: "505M", vpd: "1.1M", eng: "4.8%", tier: "viral" as const, status: "Ready" },
+    { id: "zxYjTTXc-J8", title: "Last To Leave Circle Wins $500,000", views: "539M", vpd: "920K", eng: "4.5%", tier: "viral" as const, status: "Ready" },
+    { id: "FM7Z-Xq8Drc", title: "Ages 1 - 100 Fight For $500,000", views: "446M", vpd: "310K", eng: "3.1%", tier: "mid" as const, status: "Ready" },
+    { id: "9RhWXPcKBI8", title: "Survive 100 Days Trapped, Win $500,000", views: "427M", vpd: "280K", eng: "2.9%", tier: "mid" as const, status: "Ready" },
+    { id: "tnTPaLOaHz8", title: "$10,000 Every Day You Survive In A Grocery Store", views: "472M", vpd: "220K", eng: "2.6%", tier: "mid" as const, status: "Processing" },
+    { id: "erLbbextvlY", title: "7 Days Stranded On An Island", views: "437M", vpd: "180K", eng: "2.1%", tier: "bombed" as const, status: "Ready" },
+    { id: "48h57PspBec", title: "$1 vs $1,000,000,000 Yacht!", views: "509M", vpd: "150K", eng: "1.8%", tier: "bombed" as const, status: "Ready" },
   ];
   const tierCounts = { viral: 18, mid: 24, bombed: 8 };
   const total = tierCounts.viral + tierCounts.mid + tierCounts.bombed;
@@ -47,7 +50,6 @@ function StatsVisual() {
   return (
     <div className="rounded-xl overflow-hidden" style={{ background: cardBg, border: cardBorder }}>
       <div className="p-4">
-        {/* Channel header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full flex items-center justify-center text-[10px] font-bold" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)" }}>MB</div>
@@ -58,7 +60,6 @@ function StatsVisual() {
           </div>
         </div>
 
-        {/* Tier distribution */}
         <div className="mb-4">
           <span className="font-mono text-[9px] uppercase tracking-wider block mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Tier Distribution</span>
           <div className="flex rounded-md overflow-hidden h-6">
@@ -74,7 +75,6 @@ function StatsVisual() {
           </div>
         </div>
 
-        {/* Quick insights */}
         <div className="grid grid-cols-3 gap-2 mb-4">
           {insights.map((ins) => (
             <div key={ins.label} className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
@@ -85,7 +85,6 @@ function StatsVisual() {
           ))}
         </div>
 
-        {/* Video table */}
         <div className="rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.05)" }}>
           <div className="grid gap-2 px-3 py-2" style={{ gridTemplateColumns: "1fr 48px 48px 40px 48px 56px", background: "rgba(255,255,255,0.03)" }}>
             {["Video", "Views", "VPD", "Eng%", "Tier", "Status"].map((h) => (
@@ -95,9 +94,8 @@ function StatsVisual() {
           {videos.map((v, i) => (
             <div key={i} className="grid gap-2 px-3 py-1.5 items-center" style={{ gridTemplateColumns: "1fr 48px 48px 40px 48px 56px", borderTop: "1px solid rgba(255,255,255,0.03)" }}>
               <div className="flex items-center gap-2 min-w-0">
-                <div className="w-9 h-5 rounded shrink-0 flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)" }}>
-                  <span style={{ color: "rgba(255,255,255,0.1)", fontSize: 7 }}>▶</span>
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={ytThumb(v.id)} alt="" className="w-10 h-6 rounded shrink-0 object-cover" style={{ border: "1px solid rgba(255,255,255,0.06)" }} loading="lazy" />
                 <span className="text-[9px] truncate" style={{ color: "rgba(255,255,255,0.7)" }}>{v.title}</span>
               </div>
               <span className="text-[9px] font-mono" style={{ color: "rgba(255,255,255,0.6)" }}>{v.views}</span>
@@ -119,13 +117,15 @@ function StatsVisual() {
 
 function FramesVisual() {
   const videos = [
-    { title: "$1 vs $100,000,000 Car!", tier: "viral" as const, views: "278M", vpd: "1.2M" },
-    { title: "I Survived 7 Days In An Abandoned City", tier: "viral" as const, views: "189M", vpd: "890K" },
-    { title: "World's Most Dangerous Trap!", tier: "viral" as const, views: "142M", vpd: "720K" },
-    { title: "I Built 100 Houses And Gave Them Away", tier: "mid" as const, views: "95M", vpd: "310K" },
-    { title: "I Opened A Free Restaurant", tier: "bombed" as const, views: "23M", vpd: "45K" },
+    { id: "0e3GPea1Tyg", title: "Squid Game In Real Life!", tier: "viral" as const, views: "885M", vpd: "1.8M" },
+    { id: "KrLj6nc516A", title: "$1 vs $1,000,000,000 Car!", tier: "viral" as const, views: "505M", vpd: "1.1M" },
+    { id: "zxYjTTXc-J8", title: "Last To Leave Circle Wins $500K", tier: "viral" as const, views: "539M", vpd: "920K" },
+    { id: "FM7Z-Xq8Drc", title: "Ages 1 - 100 Fight For $500K", tier: "mid" as const, views: "446M", vpd: "310K" },
+    { id: "erLbbextvlY", title: "7 Days Stranded On An Island", tier: "bombed" as const, views: "437M", vpd: "180K" },
   ];
   const timestamps = ["0s", "1s", "2s", "3s", "5s", "10s", "15s", "20s", "30s"];
+  const frameMap = [0, 1, 2, 3, 1, 2, 3, 1, 2];
+  const emptyFrames: Record<number, number[]> = { 3: [7, 8], 4: [2, 5, 8] };
 
   return (
     <div className="rounded-xl overflow-hidden" style={{ background: cardBg, border: cardBorder }}>
@@ -140,29 +140,24 @@ function FramesVisual() {
         </div>
 
         <div className="overflow-x-auto">
-          <div style={{ minWidth: 580 }}>
-            {/* Timestamp header */}
+          <div style={{ minWidth: 600 }}>
             <div className="grid gap-1 mb-1.5" style={{ gridTemplateColumns: "130px repeat(9, 1fr)" }}>
-              <div className="flex items-center">
-                <span className="text-[8px] font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>Video</span>
-              </div>
+              <div className="flex items-center"><span className="text-[8px] font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>Video</span></div>
               {timestamps.map((t, i) => (
                 <span key={t} className="text-[8px] font-mono text-center" style={{ color: i < 4 ? "#facc15" : "rgba(255,255,255,0.3)" }}>{t}</span>
               ))}
             </div>
 
-            {/* Video rows */}
             {videos.map((v, vi) => {
-              const prevTier = vi > 0 ? videos[vi - 1].tier : null;
-              const showSep = prevTier && prevTier !== v.tier;
+              const prev = vi > 0 ? videos[vi - 1].tier : null;
+              const sep = prev && prev !== v.tier;
               return (
                 <div key={vi}>
-                  {showSep && <div className="h-px my-1.5" style={{ background: "rgba(255,255,255,0.08)" }} />}
+                  {sep && <div className="h-px my-1.5" style={{ background: "rgba(255,255,255,0.08)" }} />}
                   <div className="grid gap-1 mb-1" style={{ gridTemplateColumns: "130px repeat(9, 1fr)" }}>
                     <div className="flex items-center gap-2 pr-2 min-w-0">
-                      <div className="w-8 h-5 rounded shrink-0 flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)" }}>
-                        <span style={{ color: "rgba(255,255,255,0.08)", fontSize: 6 }}>▶</span>
-                      </div>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={ytThumb(v.id)} alt="" className="w-8 h-5 rounded shrink-0 object-cover" style={{ border: "1px solid rgba(255,255,255,0.06)" }} loading="lazy" />
                       <div className="min-w-0">
                         <div className="flex items-center gap-1">
                           <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: tierColors[v.tier] }} />
@@ -173,22 +168,17 @@ function FramesVisual() {
                     </div>
                     {timestamps.map((t, ti) => {
                       const isHook = ti < 4;
-                      const empty = (vi === 4 && ti === 2) || (vi === 1 && ti === 6) || (vi === 3 && ti === 8);
+                      const empty = emptyFrames[vi]?.includes(ti);
+                      const frameNum = frameMap[ti];
+                      const src = frameNum === 0 ? ytThumb(v.id) : ytFrame(v.id, frameNum);
                       return (
-                        <div
-                          key={t}
-                          className="rounded-sm flex items-center justify-center"
-                          style={{
-                            aspectRatio: "16/10",
-                            background: empty ? "transparent" : `linear-gradient(${120 + vi * 25 + ti * 18}deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02))`,
-                            border: empty
-                              ? "1px dashed rgba(255,255,255,0.06)"
-                              : isHook
-                                ? "2px solid rgba(250,204,21,0.5)"
-                                : "1px solid rgba(255,255,255,0.06)",
-                          }}
-                        >
-                          {!empty && <span style={{ color: "rgba(255,255,255,0.06)", fontSize: 5 }}>■</span>}
+                        <div key={t} className="rounded-sm overflow-hidden" style={{ aspectRatio: "16/10", border: empty ? "1px dashed rgba(255,255,255,0.08)" : isHook ? "2px solid rgba(250,204,21,0.5)" : "1px solid rgba(255,255,255,0.08)" }}>
+                          {empty ? (
+                            <div className="w-full h-full flex items-center justify-center"><span style={{ color: "rgba(255,255,255,0.06)", fontSize: 5 }}>—</span></div>
+                          ) : (
+                            /* eslint-disable-next-line @next/next/no-img-element */
+                            <img src={src} alt="" className="w-full h-full object-cover" loading="lazy" />
+                          )}
                         </div>
                       );
                     })}
@@ -208,14 +198,14 @@ function FramesVisual() {
 function HeatmapVisual() {
   const dimensions = ["Feelings", "Facts", "Fun", "Values", "Autocratic", "Leadership"];
   const videos = [
-    { title: "$1 vs $100,000,000 Car!", tier: "viral" as const, scores: [4, 3, 5, 2, 4, 5] },
-    { title: "I Survived 7 Days In An Abandoned City", tier: "viral" as const, scores: [5, 4, 4, 3, 3, 5] },
-    { title: "World's Most Dangerous Trap!", tier: "viral" as const, scores: [3, 2, 5, 2, 5, 4] },
-    { title: "I Built 100 Houses And Gave Them Away", tier: "mid" as const, scores: [4, 3, 3, 4, 2, 3] },
-    { title: "Survive 100 Days, Win $500,000", tier: "mid" as const, scores: [3, 2, 4, 2, 3, 3] },
-    { title: "Every Country On Earth...", tier: "mid" as const, scores: [3, 4, 3, 3, 2, 2] },
-    { title: "I Opened A Free Restaurant", tier: "bombed" as const, scores: [2, 3, 2, 3, 1, 2] },
-    { title: "Last To Leave Circle Wins...", tier: "bombed" as const, scores: [2, 1, 3, 1, 2, 1] },
+    { title: "$456K Squid Game IRL!", tier: "viral" as const, scores: [4, 3, 5, 2, 4, 5] },
+    { title: "$1 vs $1B Car!", tier: "viral" as const, scores: [5, 4, 4, 3, 3, 5] },
+    { title: "Last To Leave Circle", tier: "viral" as const, scores: [3, 2, 5, 2, 5, 4] },
+    { title: "Ages 1-100 Fight", tier: "mid" as const, scores: [4, 3, 3, 4, 2, 3] },
+    { title: "Survive 100 Days", tier: "mid" as const, scores: [3, 2, 4, 2, 3, 3] },
+    { title: "$10K/Day Grocery Store", tier: "mid" as const, scores: [3, 4, 3, 3, 2, 2] },
+    { title: "7 Days Stranded", tier: "bombed" as const, scores: [2, 3, 2, 3, 1, 2] },
+    { title: "$1 vs $1B Yacht!", tier: "bombed" as const, scores: [2, 1, 3, 1, 2, 1] },
   ];
 
   const scoreColor = (s: number) => {
@@ -238,7 +228,6 @@ function HeatmapVisual() {
       <div className="p-4">
         <span className="font-mono text-[9px] uppercase tracking-wider block mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>Communication Heatmap</span>
 
-        {/* Dimension definitions (compact) */}
         <div className="grid grid-cols-3 gap-1.5 mb-3">
           {dimensions.map((d) => {
             const flagged = d === "Values" || d === "Autocratic";
@@ -252,7 +241,6 @@ function HeatmapVisual() {
           })}
         </div>
 
-        {/* Heatmap table */}
         <div className="overflow-x-auto mb-4">
           <div style={{ minWidth: 460 }}>
             <div className="grid gap-1 mb-1" style={{ gridTemplateColumns: "120px repeat(6, 1fr)" }}>
@@ -287,19 +275,16 @@ function HeatmapVisual() {
           </div>
         </div>
 
-        {/* Performance Drivers */}
         <span className="font-mono text-[9px] uppercase tracking-wider block mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Performance Drivers</span>
         <div className="space-y-1.5">
           {drivers.map((d) => (
-            <div key={d.name} className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.02)", borderLeft: `2px solid ${d.confidence === "high" ? "#22c55e" : "#facc15"}`, border: "1px solid rgba(255,255,255,0.05)", borderLeftWidth: 2, borderLeftColor: d.confidence === "high" ? "#22c55e" : "#facc15" }}>
+            <div key={d.name} className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderLeftWidth: 2, borderLeftColor: d.confidence === "high" ? "#22c55e" : "#facc15" }}>
               <div className="flex items-center justify-between mb-1">
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full" style={{ background: d.confidence === "high" ? "#22c55e" : "#facc15" }} />
                   <span className="text-[10px] font-medium" style={{ color: "rgba(255,255,255,0.8)" }}>{d.name}</span>
                 </div>
-                <span className="text-[8px] font-mono px-1.5 py-0.5 rounded" style={{ color: d.replicability === "Easy" ? "#22c55e" : d.replicability === "Medium" ? "#3b82f6" : "#ef4444", background: d.replicability === "Easy" ? "rgba(34,197,94,0.1)" : d.replicability === "Medium" ? "rgba(59,130,246,0.1)" : "rgba(239,68,68,0.1)" }}>
-                  {d.replicability}
-                </span>
+                <span className="text-[8px] font-mono px-1.5 py-0.5 rounded" style={{ color: d.replicability === "Easy" ? "#22c55e" : d.replicability === "Medium" ? "#3b82f6" : "#ef4444", background: d.replicability === "Easy" ? "rgba(34,197,94,0.1)" : d.replicability === "Medium" ? "rgba(59,130,246,0.1)" : "rgba(239,68,68,0.1)" }}>{d.replicability}</span>
               </div>
               <div className="flex items-center gap-3 ml-3.5">
                 <span className="text-[8px] font-mono" style={{ color: "#22c55e" }}>{d.viralEvidence}</span>
@@ -321,14 +306,12 @@ function ScriptVisual() {
   return (
     <div className="rounded-xl overflow-hidden" style={{ background: cardBg, border: cardBorder }}>
       <div className="p-4">
-        {/* Selected concept */}
         <div className="rounded-lg p-3 mb-3" style={{ background: "rgba(230,57,70,0.05)", border: "1px solid rgba(230,57,70,0.2)" }}>
           <span className="text-[8px] font-mono uppercase tracking-wider block mb-1" style={{ color: "#E63946" }}>Selected Concept</span>
           <span className="text-sm font-medium block mb-1" style={{ color: "rgba(255,255,255,0.9)" }}>$1 vs $1,000,000 Survival Challenge</span>
           <span className="text-[10px]" style={{ color: "rgba(255,255,255,0.4)" }}>Two contestants, extreme budget gap, 7-day survival — high stakes with emotional payoff.</span>
         </div>
 
-        {/* Performance drivers */}
         <span className="font-mono text-[8px] uppercase tracking-wider block mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Performance Drivers Used</span>
         <div className="flex flex-wrap gap-1.5 mb-3">
           {drivers.map((d) => (
@@ -336,7 +319,6 @@ function ScriptVisual() {
           ))}
         </div>
 
-        {/* Action bar */}
         <div className="flex items-center justify-between mb-2">
           <span className="font-mono text-[9px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>Generated Script</span>
           <div className="flex items-center gap-1.5">
@@ -346,43 +328,29 @@ function ScriptVisual() {
           </div>
         </div>
 
-        {/* Script body */}
         <div className="rounded-lg p-3 font-mono text-[10px] leading-relaxed space-y-3" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", maxHeight: 260, overflow: "hidden", maskImage: "linear-gradient(to bottom, black 75%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black 75%, transparent 100%)" }}>
           <div>
             <span style={{ color: "#E63946" }}>[HOOK - 0:00-0:08]</span>
-            <p style={{ color: "rgba(255,255,255,0.6)" }}>
-              &quot;Right now, this person has to survive on just $1... while this person gets one MILLION dollars. And whatever they don&apos;t spend in the next 7 days, they get to keep.&quot;
-            </p>
-            <p className="mt-1" style={{ color: "rgba(255,255,255,0.35)", fontStyle: "italic" }}>
-              [Camera: Side-by-side shot. Dramatic zoom on the $1 bill vs. the briefcase of cash.]
-            </p>
+            <p style={{ color: "rgba(255,255,255,0.6)" }}>&quot;Right now, this person has to survive on just $1... while this person gets one MILLION dollars. And whatever they don&apos;t spend in the next 7 days, they get to keep.&quot;</p>
+            <p className="mt-1" style={{ color: "rgba(255,255,255,0.35)", fontStyle: "italic" }}>[Camera: Side-by-side shot. Dramatic zoom on the $1 bill vs. the briefcase of cash.]</p>
           </div>
           <div>
             <span style={{ color: "rgba(255,255,255,0.4)" }}>[SETUP - Day 1, 0:08-1:30]</span>
-            <p style={{ color: "rgba(255,255,255,0.5)" }}>
-              Introduce both contestants side by side. Show the $1 contestant&apos;s reaction — genuine shock, comedic disbelief. Cut immediately to the $1M contestant going on a shopping spree. Establish the core tension: &quot;Whatever you don&apos;t spend, you keep.&quot;
-            </p>
+            <p style={{ color: "rgba(255,255,255,0.5)" }}>Introduce both contestants side by side. Show the $1 contestant&apos;s reaction — genuine shock, comedic disbelief. Cut immediately to the $1M contestant going on a shopping spree. Establish the core tension: &quot;Whatever you don&apos;t spend, you keep.&quot;</p>
           </div>
           <div>
             <span style={{ color: "rgba(255,255,255,0.4)" }}>[ESCALATION - Day 2-3, 1:30-4:00]</span>
-            <p style={{ color: "rgba(255,255,255,0.5)" }}>
-              Show the growing contrast in living conditions. The $1 contestant gets creative — foraging, trading, building shelter. The $1M contestant faces the dilemma: comfort vs. keeping money. Pattern interrupt at 2:15: reveal a twist...
-            </p>
+            <p style={{ color: "rgba(255,255,255,0.5)" }}>Show the growing contrast in living conditions. The $1 contestant gets creative — foraging, trading, building shelter. The $1M contestant faces the dilemma: comfort vs. keeping money. Pattern interrupt at 2:15: reveal a twist...</p>
           </div>
           <div>
             <span style={{ color: "rgba(255,255,255,0.4)" }}>[CLIMAX - Day 5-7, 4:00-8:00]</span>
-            <p style={{ color: "rgba(255,255,255,0.5)" }}>
-              Both contestants face their biggest challenge yet. The $1 contestant discovers they can challenge the $1M contestant for a portion of the budget — but only if they complete an extreme task...
-            </p>
+            <p style={{ color: "rgba(255,255,255,0.5)" }}>Both contestants face their biggest challenge yet. The $1 contestant discovers they can challenge the $1M contestant for a portion of the budget — but only if they complete an extreme task...</p>
           </div>
         </div>
 
-        {/* Complete button */}
         <div className="flex items-center justify-between mt-3 pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
           <span className="text-[9px]" style={{ color: "rgba(255,255,255,0.35)" }}>Script ready for production</span>
-          <span className="text-[9px] font-mono px-3 py-1.5 rounded-lg" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>
-            ✓ Mark as Complete
-          </span>
+          <span className="text-[9px] font-mono px-3 py-1.5 rounded-lg" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>✓ Mark as Complete</span>
         </div>
       </div>
     </div>
@@ -395,6 +363,7 @@ function VisualWrapper({ screenshotSrc, children }: { screenshotSrc?: string; ch
   if (screenshotSrc) {
     return (
       <div className="rounded-xl overflow-hidden" style={{ border: cardBorder, boxShadow: "0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(230,57,70,0.08)" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={screenshotSrc} alt="" className="w-full h-auto rounded-xl" />
       </div>
     );
@@ -413,7 +382,7 @@ const features = [
     description: "Analyze any channel — like MrBeast — across all their videos. See tier distribution (viral, mid, bombed), view counts, engagement rates, and views-per-day. Quick insights reveal the patterns: viral titles use numbers 4x more, questions 68% more, and average 2.5x the views.",
     details: [
       "Tier distribution bar — viral, mid, bombed at a glance",
-      "Video table with views, VPD, engagement %, and processing status",
+      "Video table with real thumbnails, views, VPD, engagement %, and processing status",
       "Quick insights comparing viral vs. bombed patterns",
       "Click any video to expand frames and transcript",
     ],
@@ -426,7 +395,7 @@ const features = [
     title: "Frame-by-Frame Comparison",
     description: "Compare what top creators show at every second — side by side. Yellow-bordered hook zone frames reveal the visual patterns in the critical first 3 seconds. Extract HD frames on demand. See exactly what MrBeast puts on screen at 0s, 1s, 3s vs. his bombed videos.",
     details: [
-      "Horizontal timeline from 0s to 30s+ with frame thumbnails",
+      "Horizontal timeline from 0s to 30s+ with real video frames",
       "Yellow hook zone borders (0-3s) vs. gray body frames",
       "HD frame extraction for close-up analysis",
       "Tier-separated rows — compare viral vs. bombed side by side",
@@ -479,11 +448,8 @@ export default function FeaturesPage() {
       <div className="relative" style={{ zIndex: 1 }}>
         <Nav />
         <main className="min-h-screen pt-32 pb-24 px-6 lg:px-12">
-          {/* Hero */}
           <div className="max-w-4xl mx-auto text-center mb-24">
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] mb-4 block" style={{ color: "rgba(255,255,255,0.4)" }}>
-              Powerful Tools
-            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] mb-4 block" style={{ color: "rgba(255,255,255,0.4)" }}>Powerful Tools</span>
             <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.05] tracking-tight mb-6 text-balance" style={{ color: "rgba(255,255,255,0.95)" }}>
               Your Winning{" "}
               <span className="italic" style={{ color: "#E63946", textShadow: "0 2px 30px rgba(230, 57, 70, 0.4)" }}>Deck</span>
@@ -493,7 +459,6 @@ export default function FeaturesPage() {
             </p>
           </div>
 
-          {/* Feature sections */}
           <div className="max-w-6xl mx-auto space-y-24 lg:space-y-32 mb-24">
             {features.map((feature, i) => {
               const reversed = i % 2 === 1;
@@ -526,7 +491,6 @@ export default function FeaturesPage() {
             })}
           </div>
 
-          {/* CTA */}
           <div className="max-w-2xl mx-auto text-center">
             <div className="rounded-2xl p-10 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #1A1517 0%, #141414 100%)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[150px] pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(230, 57, 70, 0.15) 0%, transparent 70%)" }} />
