@@ -1,7 +1,8 @@
 import { Nav } from "@/components/marketing/nav";
 import { Hero } from "@/components/marketing/hero";
 import { CardsSection } from "@/components/marketing/cards-section";
-import { HowItWorks } from "@/components/marketing/how-it-works";
+import { ProductShowcase } from "@/components/marketing/product-showcase";
+import { WorkflowSteps } from "@/components/marketing/workflow-steps";
 import { WhySection } from "@/components/marketing/why-section";
 import { StatsBar } from "@/components/marketing/stats-bar";
 import { BetaAccess } from "@/components/marketing/beta-access";
@@ -18,7 +19,8 @@ export default function LandingPage() {
         <main>
           <Hero />
           <CardsSection />
-          <HowItWorks />
+          <ProductShowcase />
+          <WorkflowSteps />
           <WhySection />
           <StatsBar />
           <BetaAccess />
