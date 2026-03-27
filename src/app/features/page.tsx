@@ -496,7 +496,7 @@ export default function FeaturesPage() {
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[150px] pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(230, 57, 70, 0.15) 0%, transparent 70%)" }} />
               <div className="absolute inset-0 rounded-2xl pointer-events-none opacity-[0.03]" style={{ backgroundImage: NOISE_TEXTURE }} />
               <h3 className="font-serif text-3xl font-normal mb-4 relative" style={{ color: "rgba(255,255,255,0.95)" }}>Ready to Stack the Deck?</h3>
-              <p className="text-sm mb-8 relative" style={{ color: "rgba(255,255,255,0.5)" }}>Start analyzing videos with 3 free searches today.</p>
+              <p className="text-sm mb-8 relative" style={{ color: "rgba(255,255,255,0.5)" }}>Start analyzing videos for free today.</p>
               <a href={`${APP_URL}/sign-up`} className="relative inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5 overflow-hidden" style={{ background: "linear-gradient(135deg, #E63946, #B91C2C)", color: "#ffffff", boxShadow: "0 4px 20px rgba(230, 57, 70, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)" }}>
                 <span style={{ fontSize: 14 }}>♠</span>
                 <span>Get Started Free</span>
