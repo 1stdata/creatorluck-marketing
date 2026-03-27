@@ -64,7 +64,7 @@ export function BetaAccess() {
               className="text-base leading-relaxed mb-10 max-w-md mx-auto"
               style={{ color: 'rgba(255,255,255,0.7)' }}
             >
-              3 free video analyses. No credit card required.
+              Free to try.
               <br />
               <span style={{ color: 'rgba(255,255,255,0.9)' }}>
                 Bonus: "Top 5 Viral Hook Formulas for 2026" PDF included.

@@ -195,7 +195,7 @@ export default function HowItWorksPage() {
                 className="text-sm mb-8 relative"
                 style={{ color: 'rgba(255,255,255,0.5)' }}
               >
-                Start analyzing videos for free. No credit card required.
+                Start analyzing videos for free.
               </p>
               <a
                 href={`${APP_URL}/sign-up`}

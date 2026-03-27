@@ -447,8 +447,7 @@ export function Hero() {
 
             {/* Note */}
             <p className="text-xs sm:text-sm text-center lg:text-left" style={{ color: 'rgba(255,255,255,0.5)' }}>
-              <span className="font-semibold" style={{ color: '#E63946' }}>Free to try</span>{" "}
-              <span style={{ opacity: 0.4 }}>·</span> No credit card required
+              <span className="font-semibold" style={{ color: '#E63946' }}>Free to try</span>
             </p>
 
             {/* Search Teaser */}
