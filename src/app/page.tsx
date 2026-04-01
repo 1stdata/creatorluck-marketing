@@ -9,6 +9,7 @@ import { BetaAccess } from "@/components/marketing/beta-access";
 import { CtaSection } from "@/components/marketing/cta-section";
 import { Footer } from "@/components/marketing/footer";
 import { AnimatedBackground } from "@/components/marketing/animated-background";
+import { DemoVideo } from "@/components/marketing/demo-video";
 
 export default function LandingPage() {
   return (
@@ -18,6 +19,7 @@ export default function LandingPage() {
         <Nav />
         <main>
           <Hero />
+          <DemoVideo />
           <CardsSection />
           <ProductShowcase />
           <WorkflowSteps />
