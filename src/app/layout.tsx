@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Plus_Jakarta_Sans, Space_Mono, Instrument_Serif } from "next/font/google";
 // Styles loaded from main.css - globals.css removed
@@ -45,6 +46,15 @@ export default function RootLayout({
         className={`${jakarta.variable} ${spaceMono.variable} ${instrumentSerif.variable}`}
       >
         <body className="font-sans bg-background text-foreground antialiased">
+          <Script id="microsoft-clarity" strategy="afterInteractive">
+            {`
+              (function(c,l,a,r,i,t,y){
+                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "w2grevsvt5");
+            `}
+          </Script>
           {children}
         </body>
       </html>
