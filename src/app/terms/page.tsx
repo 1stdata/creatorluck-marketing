@@ -1,6 +1,20 @@
+import type { Metadata } from "next";
 import { Nav } from "@/components/marketing/nav";
 import { Footer } from "@/components/marketing/footer";
 import { AnimatedBackground } from "@/components/marketing/animated-background";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | CreatorLuck",
+  description:
+    "Read the terms and conditions for using CreatorLuck's video analytics and content optimization platform.",
+  openGraph: {
+    title: "Terms of Service | CreatorLuck",
+    description: "Terms and conditions for using CreatorLuck's video analytics platform.",
+    siteName: "CreatorLuck",
+    type: "website",
+    url: "https://creatorluck.io/terms",
+  },
+};
 
 export default function TermsPage() {
   return (

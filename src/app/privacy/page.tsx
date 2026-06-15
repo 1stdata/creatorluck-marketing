@@ -1,6 +1,20 @@
+import type { Metadata } from "next";
 import { Nav } from "@/components/marketing/nav";
 import { Footer } from "@/components/marketing/footer";
 import { AnimatedBackground } from "@/components/marketing/animated-background";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | CreatorLuck",
+  description:
+    "Learn how CreatorLuck collects, uses, and protects your personal information. We are committed to your data security and privacy.",
+  openGraph: {
+    title: "Privacy Policy | CreatorLuck",
+    description: "Learn how CreatorLuck collects, uses, and protects your personal information.",
+    siteName: "CreatorLuck",
+    type: "website",
+    url: "https://creatorluck.io/privacy",
+  },
+};
 
 export default function PrivacyPage() {
   return (
