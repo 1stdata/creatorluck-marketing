@@ -7,13 +7,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | CreatorLuck",
   description:
     "Learn how CreatorLuck collects, uses, and protects your personal information. We are committed to your data security and privacy.",
-  openGraph: {
-    title: "Privacy Policy | CreatorLuck",
-    description: "Learn how CreatorLuck collects, uses, and protects your personal information.",
-    siteName: "CreatorLuck",
-    type: "website",
-    url: "https://creatorluck.io/privacy",
-  },
+  robots: { index: false, follow: false },
 };
 
 export default function PrivacyPage() {

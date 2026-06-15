@@ -7,13 +7,7 @@ export const metadata: Metadata = {
   title: "Cookie Policy | CreatorLuck",
   description:
     "Understand how CreatorLuck uses cookies to improve your experience. Learn about the types of cookies we use and how to manage them.",
-  openGraph: {
-    title: "Cookie Policy | CreatorLuck",
-    description: "Understand how CreatorLuck uses cookies to improve your experience.",
-    siteName: "CreatorLuck",
-    type: "website",
-    url: "https://creatorluck.io/cookies",
-  },
+  robots: { index: false, follow: false },
 };
 
 export default function CookiesPage() {

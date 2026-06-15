@@ -7,13 +7,7 @@ export const metadata: Metadata = {
   title: "Terms of Service | CreatorLuck",
   description:
     "Read the terms and conditions for using CreatorLuck's video analytics and content optimization platform.",
-  openGraph: {
-    title: "Terms of Service | CreatorLuck",
-    description: "Terms and conditions for using CreatorLuck's video analytics platform.",
-    siteName: "CreatorLuck",
-    type: "website",
-    url: "https://creatorluck.io/terms",
-  },
+  robots: { index: false, follow: false },
 };
 
 export default function TermsPage() {
