@@ -69,8 +69,9 @@ export default function PricingPage() {
 
   useEffect(() => {
     try {
-      if (typeof window.edgetag === "function") {
-        window.edgetag("tag", "ViewContent", {
+      const et = (window as Record<string, unknown>).edgetag;
+      if (typeof et === "function") {
+        et("tag", "ViewContent", {
           content_name: "Pricing Page",
           content_ids: ["creatorluck-standard", "creatorluck-pro", "creatorluck-team"],
           content_type: "product",
@@ -81,13 +82,14 @@ export default function PricingPage() {
 
   const handlePlanClick = (planId: string) => {
     try {
+      const et = (window as Record<string, unknown>).edgetag;
       const valueMap: Record<string, number> = {
         standard: 49,
         pro: 149,
         team: 499,
       };
-      if (typeof window.edgetag === "function") {
-        window.edgetag("tag", "InitiateCheckout", {
+      if (typeof et === "function") {
+        et("tag", "InitiateCheckout", {
           content_ids: [`creatorluck-${planId}`],
           value: valueMap[planId] ?? 0,
           currency: "USD",
