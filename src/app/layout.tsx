@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Plus_Jakarta_Sans, Space_Mono, Instrument_Serif } from "next/font/google";
+import { EdgeTagTracker } from "@/components/edgetag-tracker";
 import "./main.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -69,6 +70,7 @@ export default function RootLayout({
               })(window, document, "clarity", "script", "w2grevsvt5");
             `}
           </Script>
+          <EdgeTagTracker />
           {children}
         </body>
       </html>

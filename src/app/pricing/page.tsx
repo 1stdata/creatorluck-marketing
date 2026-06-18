@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Nav } from "@/components/marketing/nav";
 import { Footer } from "@/components/marketing/footer";
 import { AnimatedBackground } from "@/components/marketing/animated-background";
@@ -66,19 +66,6 @@ const plans = [
 
 export default function PricingPage() {
   const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
-
-  useEffect(() => {
-    try {
-      const et = (window as unknown as Record<string, unknown>).edgetag;
-      if (typeof et === "function") {
-        et("tag", "ViewContent", {
-          content_name: "Pricing Page",
-          content_ids: ["creatorluck-standard", "creatorluck-pro", "creatorluck-team"],
-          content_type: "product",
-        });
-      }
-    } catch { /* edgetag not ready */ }
-  }, []);
 
   const handlePlanClick = (planId: string) => {
     try {
