@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Nav } from "@/components/marketing/nav";
 import { Footer } from "@/components/marketing/footer";
 import { AnimatedBackground } from "@/components/marketing/animated-background";
@@ -66,6 +66,33 @@ const plans = [
 
 export default function PricingPage() {
   const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
+
+  useEffect(() => {
+    const win = window as unknown as { edgetag?: (...args: unknown[]) => void };
+    if (win.edgetag) {
+      win.edgetag("tag", "ViewContent", {
+        content_name: "Pricing Page",
+        content_ids: ["creatorluck-standard", "creatorluck-pro", "creatorluck-team"],
+        content_type: "product",
+      });
+    }
+  }, []);
+
+  const handlePlanClick = (planId: string) => {
+    const win = window as unknown as { edgetag?: (...args: unknown[]) => void };
+    const valueMap: Record<string, number> = {
+      standard: 49,
+      pro: 149,
+      team: 499,
+    };
+    if (win.edgetag) {
+      win.edgetag("tag", "InitiateCheckout", {
+        content_ids: [`creatorluck-${planId}`],
+        value: valueMap[planId] ?? 0,
+        currency: "USD",
+      });
+    }
+  };
 
   return (
     <div className="relative min-h-screen" style={{ backgroundColor: '#0a0a0a' }}>
@@ -232,6 +259,7 @@ export default function PricingPage() {
                   {/* CTA */}
                   <a
                     href={`${APP_URL}/sign-up`}
+                    onClick={() => handlePlanClick(plan.id)}
                     className="w-full text-center py-3 px-6 rounded-xl text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5"
                     style={plan.highlighted ? {
                       background: 'linear-gradient(135deg, #E63946, #B91C2C)',

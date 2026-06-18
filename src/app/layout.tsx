@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Plus_Jakarta_Sans, Space_Mono, Instrument_Serif } from "next/font/google";
-// Styles loaded from main.css - globals.css removed
+import Script from "next/script";
 import "./main.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -44,6 +44,25 @@ export default function RootLayout({
         lang="en"
         className={`${jakarta.variable} ${spaceMono.variable} ${instrumentSerif.variable}`}
       >
+        <head>
+          <Script
+            id="edgetag-init"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.edgetag=window.edgetag||function(){(edgetag.stubs=edgetag.stubs||[]).push(arguments)};
+                edgetag('init', {
+                  edgeURL: 'https://brdja.creatorluck.io',
+                  disableConsentCheck: true
+                });
+              `,
+            }}
+          />
+          <Script
+            src="https://brdja.creatorluck.io/load"
+            strategy="afterInteractive"
+          />
+        </head>
         <body className="font-sans bg-background text-foreground antialiased">
           {children}
         </body>
