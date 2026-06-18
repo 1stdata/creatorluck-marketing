@@ -46,7 +46,7 @@ export default function RootLayout({
       >
         <head>
           <Script
-            id="edgetag-init"
+            id="edgetag"
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
@@ -55,12 +55,11 @@ export default function RootLayout({
                   edgeURL: 'https://brdja.creatorluck.io',
                   disableConsentCheck: true
                 });
+                var s=document.createElement('script');
+                s.async=true;s.src='https://brdja.creatorluck.io/load';
+                document.head.appendChild(s);
               `,
             }}
-          />
-          <Script
-            src="https://brdja.creatorluck.io/load"
-            strategy="afterInteractive"
           />
         </head>
         <body className="font-sans bg-background text-foreground antialiased">
