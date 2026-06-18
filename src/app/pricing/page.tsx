@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+// InitiateCheckout is fired server-side in backend/routes/billing.js
 import { Nav } from "@/components/marketing/nav";
 import { Footer } from "@/components/marketing/footer";
 import { AnimatedBackground } from "@/components/marketing/animated-background";
@@ -66,24 +67,6 @@ const plans = [
 
 export default function PricingPage() {
   const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
-
-  const handlePlanClick = (planId: string) => {
-    try {
-      const et = (window as unknown as Record<string, unknown>).edgetag;
-      const valueMap: Record<string, number> = {
-        standard: 49,
-        pro: 149,
-        team: 499,
-      };
-      if (typeof et === "function") {
-        et("tag", "InitiateCheckout", {
-          content_ids: [`creatorluck-${planId}`],
-          value: valueMap[planId] ?? 0,
-          currency: "USD",
-        });
-      }
-    } catch { /* edgetag not ready */ }
-  };
 
   return (
     <div className="relative min-h-screen" style={{ backgroundColor: '#0a0a0a' }}>
@@ -250,7 +233,6 @@ export default function PricingPage() {
                   {/* CTA */}
                   <a
                     href={`${APP_URL}/sign-up`}
-                    onClick={() => handlePlanClick(plan.id)}
                     className="w-full text-center py-3 px-6 rounded-xl text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5"
                     style={plan.highlighted ? {
                       background: 'linear-gradient(135deg, #E63946, #B91C2C)',
