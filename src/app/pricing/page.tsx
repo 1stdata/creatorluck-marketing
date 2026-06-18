@@ -68,30 +68,32 @@ export default function PricingPage() {
   const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
 
   useEffect(() => {
-    const win = window as unknown as { edgetag?: (...args: unknown[]) => void };
-    if (win.edgetag) {
-      win.edgetag("tag", "ViewContent", {
-        content_name: "Pricing Page",
-        content_ids: ["creatorluck-standard", "creatorluck-pro", "creatorluck-team"],
-        content_type: "product",
-      });
-    }
+    try {
+      if (typeof window.edgetag === "function") {
+        window.edgetag("tag", "ViewContent", {
+          content_name: "Pricing Page",
+          content_ids: ["creatorluck-standard", "creatorluck-pro", "creatorluck-team"],
+          content_type: "product",
+        });
+      }
+    } catch { /* edgetag not ready */ }
   }, []);
 
   const handlePlanClick = (planId: string) => {
-    const win = window as unknown as { edgetag?: (...args: unknown[]) => void };
-    const valueMap: Record<string, number> = {
-      standard: 49,
-      pro: 149,
-      team: 499,
-    };
-    if (win.edgetag) {
-      win.edgetag("tag", "InitiateCheckout", {
-        content_ids: [`creatorluck-${planId}`],
-        value: valueMap[planId] ?? 0,
-        currency: "USD",
-      });
-    }
+    try {
+      const valueMap: Record<string, number> = {
+        standard: 49,
+        pro: 149,
+        team: 499,
+      };
+      if (typeof window.edgetag === "function") {
+        window.edgetag("tag", "InitiateCheckout", {
+          content_ids: [`creatorluck-${planId}`],
+          value: valueMap[planId] ?? 0,
+          currency: "USD",
+        });
+      }
+    } catch { /* edgetag not ready */ }
   };
 
   return (

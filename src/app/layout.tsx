@@ -45,9 +45,7 @@ export default function RootLayout({
         className={`${jakarta.variable} ${spaceMono.variable} ${instrumentSerif.variable}`}
       >
         <head>
-          <Script
-            id="edgetag"
-            strategy="afterInteractive"
+          <script
             dangerouslySetInnerHTML={{
               __html: `
                 window.edgetag=window.edgetag||function(){(edgetag.stubs=edgetag.stubs||[]).push(arguments)};
@@ -55,12 +53,11 @@ export default function RootLayout({
                   edgeURL: 'https://brdja.creatorluck.io',
                   disableConsentCheck: true
                 });
-                var s=document.createElement('script');
-                s.async=true;s.src='https://brdja.creatorluck.io/load';
-                document.head.appendChild(s);
               `,
             }}
           />
+          {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+          <script async src="https://brdja.creatorluck.io/load" />
         </head>
         <body className="font-sans bg-background text-foreground antialiased">
           <Script id="microsoft-clarity" strategy="afterInteractive">
