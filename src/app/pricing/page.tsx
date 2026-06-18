@@ -69,7 +69,7 @@ export default function PricingPage() {
 
   useEffect(() => {
     try {
-      const et = (window as Record<string, unknown>).edgetag;
+      const et = (window as unknown as Record<string, unknown>).edgetag;
       if (typeof et === "function") {
         et("tag", "ViewContent", {
           content_name: "Pricing Page",
@@ -82,7 +82,7 @@ export default function PricingPage() {
 
   const handlePlanClick = (planId: string) => {
     try {
-      const et = (window as Record<string, unknown>).edgetag;
+      const et = (window as unknown as Record<string, unknown>).edgetag;
       const valueMap: Record<string, number> = {
         standard: 49,
         pro: 149,
