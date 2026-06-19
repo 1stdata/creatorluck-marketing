@@ -59,6 +59,18 @@ export default function RootLayout({
           />
           {/* eslint-disable-next-line @next/next/no-sync-scripts */}
           <script async src="https://brdja.creatorluck.io/load" />
+          {/* Google Ads (gtag.js) */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18092736291" />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'AW-18092736291');
+              `,
+            }}
+          />
         </head>
         <body className="font-sans bg-background text-foreground antialiased">
           <Script id="microsoft-clarity" strategy="afterInteractive">
