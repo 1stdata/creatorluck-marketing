@@ -59,7 +59,7 @@ export default function RootLayout({
           />
           {/* eslint-disable-next-line @next/next/no-sync-scripts */}
           <script async src="https://brdja.creatorluck.io/load" />
-          {/* Google Ads (gtag.js) */}
+          {/* Google Ads (gtag.js) — commented out to deactivate
           <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18092736291" />
           <script
             dangerouslySetInnerHTML={{
@@ -71,6 +71,7 @@ export default function RootLayout({
               `,
             }}
           />
+          */}
         </head>
         <body className="font-sans bg-background text-foreground antialiased">
           <Script id="microsoft-clarity" strategy="afterInteractive">
