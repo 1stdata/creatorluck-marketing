@@ -2,15 +2,19 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 
 declare global {
   interface Window {
-    posthog?: { identify: (id: string) => void };
+    posthog?: {
+      identify: (id: string, properties?: Record<string, unknown>) => void;
+    };
   }
 }
 
 export function EdgeTagTracker() {
   const pathname = usePathname();
+  const { user, isSignedIn } = useUser();
 
   // Merge PostHog anonymous ID with EdgeTag user ID for session recording attribution
   useEffect(() => {
@@ -26,6 +30,17 @@ export function EdgeTagTracker() {
     window.addEventListener("edgetag-initialized", handleEdgeTagInit);
     return () => window.removeEventListener("edgetag-initialized", handleEdgeTagInit);
   }, []);
+
+  // Enrich PostHog person profile with Clerk user data
+  useEffect(() => {
+    if (isSignedIn && user && window.posthog) {
+      const email = user.primaryEmailAddress?.emailAddress;
+      window.posthog.identify(user.id, {
+        email: email || undefined,
+        name: user.fullName || undefined,
+      });
+    }
+  }, [isSignedIn, user]);
 
   useEffect(() => {
     try {
