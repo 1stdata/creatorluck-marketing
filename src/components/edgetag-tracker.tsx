@@ -7,7 +7,8 @@ import { useUser } from "@clerk/nextjs";
 declare global {
   interface Window {
     posthog?: {
-      identify: (id: string, properties?: Record<string, unknown>) => void;
+      identify: (id: string) => void;
+      setPersonProperties: (properties: Record<string, unknown>) => void;
     };
   }
 }
@@ -31,13 +32,14 @@ export function EdgeTagTracker() {
     return () => window.removeEventListener("edgetag-initialized", handleEdgeTagInit);
   }, []);
 
-  // Enrich PostHog person profile with Clerk user data
+  // Enrich PostHog person profile with Clerk user data (without changing distinct_id)
   useEffect(() => {
     if (isSignedIn && user && window.posthog) {
       const email = user.primaryEmailAddress?.emailAddress;
-      window.posthog.identify(user.id, {
+      window.posthog.setPersonProperties({
         email: email || undefined,
         name: user.fullName || undefined,
+        clerk_user_id: user.id,
       });
     }
   }, [isSignedIn, user]);
