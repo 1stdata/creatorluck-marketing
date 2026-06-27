@@ -3,8 +3,29 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
+declare global {
+  interface Window {
+    posthog?: { identify: (id: string) => void };
+  }
+}
+
 export function EdgeTagTracker() {
   const pathname = usePathname();
+
+  // Merge PostHog anonymous ID with EdgeTag user ID for session recording attribution
+  useEffect(() => {
+    function handleEdgeTagInit(event: Event) {
+      try {
+        const detail = (event as CustomEvent).detail;
+        if (detail?.userId && window.posthog) {
+          window.posthog.identify(detail.userId);
+        }
+      } catch { /* posthog not ready */ }
+    }
+
+    window.addEventListener("edgetag-initialized", handleEdgeTagInit);
+    return () => window.removeEventListener("edgetag-initialized", handleEdgeTagInit);
+  }, []);
 
   useEffect(() => {
     try {
