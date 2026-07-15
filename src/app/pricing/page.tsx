@@ -22,7 +22,7 @@ const plans = [
       "100 chat messages/mo",
       "Unlimited scripts & ideation",
       "Full AI analysis",
-      "3-day free trial",
+      "3-day free trial (card required)",
     ],
     cta: "Start Free Trial",
     highlighted: false,
@@ -101,7 +101,7 @@ export default function PricingPage() {
               className="text-lg max-w-xl mx-auto leading-relaxed"
               style={{ color: 'rgba(255,255,255,0.6)' }}
             >
-              No hidden fees. No surprises. Cancel anytime.
+              No hidden fees. No surprises. Card required, cancel anytime.
             </p>
           </div>
 
