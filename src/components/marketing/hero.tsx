@@ -53,20 +53,33 @@ export function Hero() {
 
   const placeholders: Record<SearchTab, string> = {
     topic: placeholderTexts[placeholderIndex],
-    channel: "Enter channel name or @handle",
+    channel: "Your channel name, @handle or URL",
     video: "Paste YouTube video URL",
   };
 
   const handleSearch = () => {
-    if (!searchQuery.trim()) return;
+    const query = searchQuery.trim();
+    if (!query) return;
 
-    const queryParams = `q=${encodeURIComponent(searchQuery)}&type=${activeTab}`;
+    // A channel is the funnel's own input, so send it straight to the
+    // diagnostic rather than through the gated teaser. /scan resolves the
+    // channel, runs the free critique, and asks for an account at the point
+    // it has something to show — which converts better than asking first.
+    if (activeTab === "channel") {
+      window.location.href = `${APP_URL}/scan?channel=${encodeURIComponent(query)}`;
+      return;
+    }
+
+    // Topic and video are research intent, which still lives in the app.
+    // Note /dashboard/search, not /dashboard: only the former reads ?q=, so
+    // the old link dropped the query the visitor had just typed.
+    const queryParams = `q=${encodeURIComponent(query)}&type=${activeTab}`;
 
     if (isSignedIn) {
-      window.location.href = `${APP_URL}/dashboard?${queryParams}`;
+      window.location.href = `${APP_URL}/dashboard/search?${queryParams}`;
     } else {
       setShowTeaser(true);
-      setTeaserQuery(searchQuery);
+      setTeaserQuery(query);
       setTeaserType(activeTab);
     }
   };
@@ -144,7 +157,7 @@ export function Hero() {
             <div className="flex gap-1.5 sm:gap-2 mb-3 sm:mb-4 justify-start lg:justify-start relative overflow-x-auto pb-1 -mx-1 px-1 scrollbar-hide">
               {[
                 { id: "topic" as const, icon: "♠", label: "Topic", labelFull: "By Topic" },
-                { id: "channel" as const, icon: "♥", label: "Channel", labelFull: "By Channel" },
+                { id: "channel" as const, icon: "♥", label: "My Channel", labelFull: "My Channel" },
                 { id: "video" as const, icon: "♦", label: "Video", labelFull: "By Video" },
               ].map((tab) => (
                 <button
@@ -448,6 +461,9 @@ export function Hero() {
             {/* Note */}
             <p className="text-xs sm:text-sm text-center lg:text-left" style={{ color: 'rgba(255,255,255,0.5)' }}>
               <span className="font-semibold" style={{ color: '#E63946' }}>Free to try</span>
+              {activeTab === "channel" && (
+                <span> &mdash; see what&apos;s holding your channel back in about a minute</span>
+              )}
             </p>
 
             {/* Search Teaser */}
