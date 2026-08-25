@@ -22,7 +22,14 @@ export function SearchTeaser({ query, type }: SearchTeaserProps) {
   const [data, setData] = useState<SearchPreviewResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const redirectParams = encodeURIComponent(`/dashboard?q=${encodeURIComponent(query)}&type=${type}`);
+  // /dashboard never read ?q= — only /dashboard/search does — so signing up
+  // from here used to drop the query the visitor had just typed. A channel
+  // goes to the diagnostic instead, which is what a channel is for now.
+  const destination =
+    type === "channel"
+      ? `/scan?channel=${encodeURIComponent(query)}`
+      : `/dashboard/search?q=${encodeURIComponent(query)}&type=${type}`;
+  const redirectParams = encodeURIComponent(destination);
   const signUpUrl = `${APP_URL}/sign-up?redirect_url=${redirectParams}`;
   const signInUrl = `${APP_URL}/sign-in?redirect_url=${redirectParams}`;
 
